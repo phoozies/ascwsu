@@ -120,3 +120,114 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Scroll snap for full-page sections */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.scroll-snap-align-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Event Carousel Styles */
+.event-carousel {
+  padding: 2rem 0 5rem;
+}
+
+/* Custom Navigation Buttons - Outside Swiper */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--old-gold);
+}
+
+.swiper-button-prev-custom {
+  left: 0;
+}
+
+.swiper-button-next-custom {
+  right: 0;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: var(--old-gold);
+  transform: translateY(-50%) scale(1.1);
+  color: white;
+}
+
+.swiper-button-prev-custom.swiper-button-disabled,
+.swiper-button-next-custom.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Custom Pagination - Outside Swiper */
+.swiper-pagination-custom {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet {
+  display: inline-block;
+  background: var(--old-gold);
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--old-gold);
+  width: 32px;
+  border-radius: 6px;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active-main {
+  background: var(--old-gold);
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active-prev,
+.swiper-pagination-custom .swiper-pagination-bullet-active-next {
+  background: var(--old-gold);
+  opacity: 0.6;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active-prev-prev,
+.swiper-pagination-custom .swiper-pagination-bullet-active-next-next {
+  background: var(--old-gold);
+  opacity: 0.4;
+  width: 8px;
+  height: 8px;
+}
