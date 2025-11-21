@@ -29,21 +29,6 @@ const featuredAlumni = [
 export default function AlumniPage() {
   return (
     <div className="min-h-screen pt-20">
-      {/* Header Section */}
-      <Section variant="default" spacing="lg" className="pt-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Our <span className="text-[var(--old-gold)]">Alumni</span>
-            </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Celebrating the achievements and continued impact of ASC members who 
-              have gone on to make their mark in the world.
-            </p>
-          </div>
-        </Container>
-      </Section>
-
       {/* Featured Alumni */}
       <Section variant="default" spacing="lg">
         <Container>
@@ -66,57 +51,6 @@ export default function AlumniPage() {
                 </div>
               </Card>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Alumni Network Section */}
-      <Section variant="accent" spacing="lg">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Join the Alumni Network
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Stay connected with fellow alumni, mentor current students, and 
-              continue supporting ASC&apos;s mission. Your experience and guidance 
-              can help shape the next generation of leaders.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Update Your Information</Button>
-              <Button variant="outline" size="lg">
-                Become a Mentor
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Testimonials Section */}
-      <Section variant="default" spacing="lg">
-        <Container>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-            Alumni Testimonials
-          </h2>
-          <div className="space-y-6 max-w-4xl mx-auto">
-            <Card variant="bordered" className="p-8">
-              <p className="text-lg text-gray-700 mb-4 italic">
-                &ldquo;Being part of ASC was transformative. The skills I learned and 
-                the connections I made have been instrumental in my professional 
-                success. I&apos;m grateful for the opportunity to give back by mentoring 
-                current members.&rdquo;
-              </p>
-              <div className="font-semibold text-gray-900">- James Lee, Class of 2020</div>
-            </Card>
-
-            <Card variant="bordered" className="p-8">
-              <p className="text-lg text-gray-700 mb-4 italic">
-                &ldquo;ASC provided a home away from home. The friendships I formed 
-                have lasted well beyond graduation, and the leadership opportunities 
-                prepared me for my career in ways I never expected.&rdquo;
-              </p>
-              <div className="font-semibold text-gray-900">- Emily Nguyen, Class of 2019</div>
-            </Card>
           </div>
         </Container>
       </Section>

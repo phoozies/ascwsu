@@ -70,7 +70,9 @@ export default async function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="shadow-2xl">Join Our Community</Button>
+              <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="shadow-2xl">Join Us</Button>
+              </Link>
               <Link href="/about">
                 <Button 
                   variant="outline" 

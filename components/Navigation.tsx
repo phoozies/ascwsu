@@ -49,7 +49,9 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
-            <Button size="sm">Join Us</Button>
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="shadow-2xl">Join Us</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,7 +82,9 @@ export default function Navigation() {
                   {item.name}
                 </Link>
               ))}
-              <Button className="w-full">Join Us</Button>
+              <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="shadow-2xl">Join Us</Button>
+              </Link>
             </div>
           </div>
         )}

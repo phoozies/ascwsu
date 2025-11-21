@@ -48,20 +48,6 @@ const upcomingEvents = [
 export default function MonthlyPage() {
   return (
     <div className="min-h-screen pt-20">
-      {/* Header Section */}
-      <Section variant="default" spacing="lg" className="pt-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              This <span className="text-[var(--old-gold)]">Month</span>
-            </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Celebrating outstanding members and upcoming events
-            </p>
-          </div>
-        </Container>
-      </Section>
-
       {/* Member of the Month */}
       <Section variant="accent" spacing="lg">
         <Container>
@@ -108,7 +94,7 @@ export default function MonthlyPage() {
         </Container>
       </Section>
 
-      {/* Monthly Calendar */}
+            {/* Monthly Calendar */}
       <Section variant="default" spacing="lg">
         <Container>
           <div className="flex items-center justify-center mb-12">
@@ -148,61 +134,6 @@ export default function MonthlyPage() {
                 </div>
               </Card>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Nomination Section */}
-      <Section variant="accent" spacing="lg">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Nominate Next Month&apos;s Member
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Know someone who has made outstanding contributions to ASC? 
-              Nominate them for Member of the Month and help us celebrate their achievements.
-            </p>
-            <Card variant="bordered" className="p-8 text-left">
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--old-gold)] focus:border-transparent"
-                    placeholder="Enter your name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nominee Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--old-gold)] focus:border-transparent"
-                    placeholder="Who would you like to nominate?"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Reason for Nomination
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--old-gold)] focus:border-transparent"
-                    placeholder="Tell us why this member deserves recognition..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-[var(--old-gold)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--old-gold-dark)] transition-colors"
-                >
-                  Submit Nomination
-                </button>
-              </form>
-            </Card>
           </div>
         </Container>
       </Section>
