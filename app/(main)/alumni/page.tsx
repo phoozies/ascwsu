@@ -1,5 +1,5 @@
-import { Container, Section, Card, Button } from '@/components/ui';
-import { GraduationCap, Briefcase, Award } from 'lucide-react';
+import { Container, Section } from '@/components/ui';
+import AlumniCarousel from '@/components/AlumniCarousel';
 
 // Placeholder alumni data - you can replace with real data later
 const featuredAlumni = [
@@ -24,34 +24,32 @@ const featuredAlumni = [
     quote: 'ASC gave me the confidence to pursue my dreams and make a difference.',
     image: '/asc_logo_white_border.png',
   },
+  {
+    name: 'David Nguyen',
+    class: 'Class of 2020',
+    position: 'Data Scientist',
+    quote: 'ASC connected me with mentors who shaped my career path.',
+    image: '/asc_logo_white_border.png',
+  },
+  {
+    name: 'Emily Liu',
+    class: 'Class of 2019',
+    position: 'Entrepreneur',
+    quote: 'The leadership experience I gained at ASC was instrumental in starting my own business.',
+    image: '/asc_logo_white_border.png',
+  },
 ];
 
 export default function AlumniPage() {
   return (
     <div className="min-h-screen pt-20">
       {/* Featured Alumni */}
-      <Section variant="default" spacing="lg">
+      <Section variant="default" spacing="lg" className="pt-16">
         <Container>
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-            Featured Alumni
+            Featured <span className="text-[var(--old-gold)]">Alumni</span>
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredAlumni.map((alumnus) => (
-              <Card key={alumnus.name} variant="elevated" className="overflow-hidden">
-                <div className="aspect-square relative bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)]" />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
-                    {alumnus.name}
-                  </h3>
-                  <p className="text-sm text-[var(--old-gold)] font-medium mb-2">
-                    {alumnus.class}
-                  </p>
-                  <p className="text-gray-600 text-sm mb-4">{alumnus.position}</p>
-                  <p className="text-gray-700 italic">&ldquo;{alumnus.quote}&rdquo;</p>
-                </div>
-              </Card>
-            ))}
-          </div>
+          <AlumniCarousel alumni={featuredAlumni} />
         </Container>
       </Section>
     </div>

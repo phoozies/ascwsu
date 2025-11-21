@@ -9,37 +9,31 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
-export interface EventSlide {
-  id: string;
-  title: string;
-  description: string;
+interface AlumniProfile {
+  name: string;
+  class: string;
+  position: string;
+  quote: string;
   image: string;
-  date?: string;
 }
 
-export interface EventCarouselProps {
-  events: EventSlide[];
-  autoplay?: boolean;
-  autoplayDelay?: number;
+interface AlumniCarouselProps {
+  alumni: AlumniProfile[];
 }
 
-export default function EventCarousel({ 
-  events, 
-  autoplay = true, 
-  autoplayDelay = 5000 
-}: EventCarouselProps) {
+export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
   return (
     <div className="w-full relative">
       <div className="relative px-16">
         {/* Custom Navigation Buttons */}
         <button 
-          className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="swiper-button-prev-custom-alumni absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button 
-          className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="swiper-button-next-custom-alumni absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -50,17 +44,17 @@ export default function EventCarousel({
         spaceBetween={30}
         slidesPerView={1}
         navigation={{
-          prevEl: '.swiper-button-prev-custom',
-          nextEl: '.swiper-button-next-custom',
+          prevEl: '.swiper-button-prev-custom-alumni',
+          nextEl: '.swiper-button-next-custom-alumni',
         }}
         pagination={{ 
           clickable: true,
           dynamicBullets: true,
           dynamicMainBullets: 3,
-          el: '.swiper-pagination-custom',
+          el: '.swiper-pagination-custom-alumni',
         }}
         loop={true}
-        autoplay={autoplay ? { delay: autoplayDelay, disableOnInteraction: false } : false}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         effect="coverflow"
         coverflowEffect={{
           rotate: 50,
@@ -83,16 +77,16 @@ export default function EventCarousel({
             spaceBetween: 40,
           },
         }}
-        className="event-carousel pb-0"
+        className="alumni-carousel pb-0"
       >
-        {events.map((event) => (
-          <SwiperSlide key={event.id}>
+        {alumni.map((alumnus, index) => (
+          <SwiperSlide key={index}>
             <div className="group relative overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)]">
                 <Image
-                  src={event.image}
-                  alt={event.title}
+                  src={alumnus.image}
+                  alt={alumnus.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -101,16 +95,17 @@ export default function EventCarousel({
 
               {/* Content Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                {event.date && (
-                  <span className="inline-block mb-2 px-3 py-1 bg-[var(--old-gold)] rounded-full text-xs font-semibold">
-                    {event.date}
-                  </span>
-                )}
+                <span className="inline-block mb-2 px-3 py-1 bg-[var(--old-gold)] rounded-full text-xs font-semibold">
+                  {alumnus.class}
+                </span>
                 <h3 className="text-2xl font-bold mb-2 drop-shadow-lg">
-                  {event.title}
+                  {alumnus.name}
                 </h3>
-                <p className="text-sm text-gray-100 drop-shadow-md line-clamp-3">
-                  {event.description}
+                <p className="text-sm text-gray-100 drop-shadow-md mb-2">
+                  {alumnus.position}
+                </p>
+                <p className="text-sm text-gray-100 drop-shadow-md italic line-clamp-3">
+                  &ldquo;{alumnus.quote}&rdquo;
                 </p>
               </div>
 
@@ -123,7 +118,7 @@ export default function EventCarousel({
       </div>
       
       {/* Custom Pagination */}
-      <div className="swiper-pagination-custom"></div>
+      <div className="swiper-pagination-custom-alumni"></div>
     </div>
   );
 }

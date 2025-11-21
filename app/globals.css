@@ -201,7 +201,6 @@ body {
 }
 
 .swiper-pagination-custom .swiper-pagination-bullet {
-  display: inline-block;
   background: var(--old-gold);
   opacity: 0.5;
   width: 12px;
@@ -209,7 +208,8 @@ body {
   border-radius: 50%;
   transition: all 0.3s ease;
   cursor: pointer;
-  margin: 0 4px;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .swiper-pagination-custom .swiper-pagination-bullet-active {
@@ -231,6 +231,55 @@ body {
 
 .swiper-pagination-custom .swiper-pagination-bullet-active-prev-prev,
 .swiper-pagination-custom .swiper-pagination-bullet-active-next-next {
+  background: var(--old-gold);
+  opacity: 0.4;
+  width: 8px;
+  height: 8px;
+}
+
+/* Alumni Carousel Pagination */
+.swiper-pagination-custom-alumni {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+}
+
+.swiper-pagination-custom-alumni .swiper-pagination-bullet {
+  background: var(--old-gold);
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--old-gold);
+  width: 32px;
+  border-radius: 6px;
+}
+
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active-main {
+  background: var(--old-gold);
+}
+
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active-prev,
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active-next {
+  background: var(--old-gold);
+  opacity: 0.6;
+}
+
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active-prev-prev,
+.swiper-pagination-custom-alumni .swiper-pagination-bullet-active-next-next {
   background: var(--old-gold);
   opacity: 0.4;
   width: 8px;
