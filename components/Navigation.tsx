@@ -11,7 +11,6 @@ const navigationItems = [
   { name: 'About', href: '/about' },
   { name: 'Alumni', href: '/alumni' },
   { name: 'Monthly', href: '/monthly' },
-  { name: 'Events', href: '/events' },
   { name: 'Club Score', href: '/club-score' },
 ];
 

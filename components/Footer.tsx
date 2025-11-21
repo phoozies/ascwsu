@@ -45,7 +45,6 @@ const footerLinks = {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Alumni', href: '/alumni' },
-    { name: 'Events', href: '/events' },
   ],
   resources: [
     { name: 'Monthly', href: '/monthly' },
