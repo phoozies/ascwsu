@@ -20,7 +20,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Annual Events Section */}
-      <Section variant="accent" spacing="xl" fullHeight>
+      <Section variant="accent" spacing="lg" fullHeight>
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

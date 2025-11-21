@@ -1,74 +1,94 @@
-import Image from 'next/image';
-import { Button, Container, Section } from '@/components/ui';
+import { Button, Container } from '@/components/ui';
+import ImageSlideshow from '@/components/ImageSlideshow';
+import { client } from '@/sanity/lib/client';
+import { GALLERY_IMAGES_QUERY } from '@/lib/sanity/queries';
+import type { GalleryImage } from '@/types/sanity';
 
-export default function HeroSection() {
+async function getGalleryImages(): Promise<GalleryImage[]> {
+  try {
+    console.log('=== SANITY CONNECTION INFO ===');
+    console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+    console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET);
+    console.log('API Version:', process.env.NEXT_PUBLIC_SANITY_API_VERSION);
+    
+    // Test connection with a simple query
+    const testQuery = `*[_type == "gallery"] {
+      _id,
+      title,
+      "imageUrl": image.asset->url,
+      caption,
+      eventName,
+      date,
+      featured
+    }`;
+    
+    const allImages = await client.fetch(testQuery, {}, { next: { revalidate: 0 } });
+    console.log('=== QUERY RESULTS ===');
+    console.log('Total gallery items found:', allImages.length);
+    
+    if (allImages.length > 0) {
+      console.log('Sample image data:', JSON.stringify(allImages[0], null, 2));
+      // Return all images for now (we'll filter later once it works)
+      return allImages;
+    } else {
+      console.warn('⚠️  No gallery items found!');
+      console.warn('Possible issues:');
+      console.warn('1. Wrong dataset - check if your images are in "production" instead of "development"');
+      console.warn('2. Schema not deployed - the gallery schema might not be recognized');
+      console.warn('3. Documents not published - make sure images are published, not drafts');
+    }
+    
+    return [];
+  } catch (error) {
+    console.error('=== ERROR FETCHING IMAGES ===');
+    console.error('Error:', error);
+    return [];
+  }
+}
+
+export default async function HeroSection() {
+  const images = await getGalleryImages();
+
   return (
-    <Section variant="default" spacing="lg" className="pt-32 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23d7a63e\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-        }} />
+    <section className="relative min-h-screen w-full overflow-hidden">
+      {/* Full-screen Image Slideshow Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <ImageSlideshow images={images} autoplayDelay={5000} showPagination={true} />
       </div>
 
-      <Container>
-        <div className="grid md:grid-cols-2 gap-12 items-center relative">
-          {/* Text Content */}
-          <div className="space-y-6">
-            <div className="inline-block px-4 py-2 bg-[var(--old-gold-light)] bg-opacity-20 rounded-full">
-              <span className="text-[var(--old-gold-dark)] font-semibold text-sm">
-                Est. 2024 • Wichita State University
-              </span>
-            </div>
+      {/* Content Overlay */}
+      <div className="relative z-10 min-h-screen flex items-center">
+        <Container>
+          <div className="max-w-3xl">
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl">
               Asian Student
-              <span className="block text-[var(--old-gold)]">Conference</span>
+              <span className="block text-[var(--old-gold-light)]">Conference</span>
             </h1>
-            
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Building bridges, celebrating diversity, and fostering leadership 
-              within the Asian community at Wichita State University.
+
+            {/* Subheading */}
+            <p className="text-xl md:text-2xl text-white/95 mb-8 drop-shadow-lg max-w-2xl">
+              Building community, celebrating culture, and empowering leaders at Wichita State University
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg">Join Our Community</Button>
-              <Button variant="outline" size="lg">Learn More</Button>
-            </div>
-
-            <div className="flex items-center gap-8 pt-8 text-sm text-gray-600">
-              <div>
-                <div className="text-3xl font-bold text-[var(--old-gold)]">50+</div>
-                <div>Active Members</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-[var(--old-gold)]">20+</div>
-                <div>Events Annually</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-[var(--old-gold)]">1</div>
-                <div>Strong Community</div>
-              </div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="shadow-2xl">Join Our Community</Button>
+              <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900">
+                Learn More
+              </Button>
             </div>
           </div>
+        </Container>
+      </div>
 
-          {/* Image */}
-          <div className="relative">
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)] opacity-20" />
-              <Image
-                src="/asc_logo_white_border.png"
-                alt="ASC Community"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Floating decoration */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--old-gold)] rounded-full opacity-20 blur-3xl" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-[var(--old-gold-dark)] rounded-full opacity-20 blur-3xl" />
-          </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-3 bg-white/70 rounded-full" />
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

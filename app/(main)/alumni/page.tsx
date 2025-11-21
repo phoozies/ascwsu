@@ -26,12 +26,6 @@ const featuredAlumni = [
   },
 ];
 
-const alumniStats = [
-  { icon: GraduationCap, value: '100+', label: 'Alumni' },
-  { icon: Briefcase, value: '15+', label: 'Industries Represented' },
-  { icon: Award, value: '50+', label: 'Awards & Achievements' },
-];
-
 export default function AlumniPage() {
   return (
     <div className="min-h-screen pt-20">
@@ -46,28 +40,6 @@ export default function AlumniPage() {
               Celebrating the achievements and continued impact of ASC members who 
               have gone on to make their mark in the world.
             </p>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Alumni Stats */}
-      <Section variant="accent" spacing="md">
-        <Container>
-          <div className="grid md:grid-cols-3 gap-8">
-            {alumniStats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <Card key={stat.label} variant="elevated" className="text-center p-8">
-                  <div className="w-16 h-16 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-[var(--old-gold)]" />
-                  </div>
-                  <div className="text-4xl font-bold text-[var(--old-gold)] mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </Card>
-              );
-            })}
           </div>
         </Container>
       </Section>
