@@ -44,6 +44,11 @@
 }
 
 :root {
+  /* ASC Old Gold Theme Colors */
+  --old-gold: #d7a63e;
+  --old-gold-dark: #b88c2f;
+  --old-gold-light: #e4bd66;
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

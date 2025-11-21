@@ -3,6 +3,7 @@ import ImageSlideshow from '@/components/ImageSlideshow';
 import { client } from '@/sanity/lib/client';
 import { GALLERY_IMAGES_QUERY } from '@/lib/sanity/queries';
 import type { GalleryImage } from '@/types/sanity';
+import Link from 'next/link';
 
 async function getGalleryImages(): Promise<GalleryImage[]> {
   try {
@@ -57,27 +58,28 @@ export default async function HeroSection() {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 min-h-screen flex items-center">
+      <div className="relative z-10 min-h-screen flex items-center justify-center">
         <Container>
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center">
             
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl">
-              Asian Student
-              <span className="block text-[var(--old-gold-light)]">Conference</span>
+              Asian Student{' '}
+              <span className="text-[var(--old-gold-light)] whitespace-nowrap">Conference</span>
             </h1>
 
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl text-white/95 mb-8 drop-shadow-lg max-w-2xl">
-              Building community, celebrating culture, and empowering leaders at Wichita State University
-            </p>
-
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="shadow-2xl">Join Our Community</Button>
-              <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900">
-                Learn More
-              </Button>
+              <Link href="/about">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900"
+                >
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
