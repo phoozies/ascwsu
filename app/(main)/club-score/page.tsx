@@ -1,262 +1,206 @@
 import { Container, Section, Card } from '@/components/ui';
-import { Trophy, TrendingUp, Star, Medal } from 'lucide-react';
+import { Trophy, Star, Medal, Gift, Ticket, ShoppingBag, Sparkles } from 'lucide-react';
+import { getLeaderboardData } from '@/lib/googleSheets';
+import LeaderboardItem from '@/components/LeaderboardItem';
 
-// Placeholder data - replace with real data later
-const leaderboard = [
-  {
-    rank: 1,
-    name: 'Emily Chen',
-    points: 450,
-    avatar: '/asc_logo_white_border.png',
-    badges: ['Event Organizer', 'Top Volunteer', 'Mentor'],
-  },
-  {
-    rank: 2,
-    name: 'David Kim',
-    points: 420,
-    avatar: '/asc_logo_white_border.png',
-    badges: ['Leadership', 'Cultural Ambassador'],
-  },
-  {
-    rank: 3,
-    name: 'Sarah Patel',
-    points: 385,
-    avatar: '/asc_logo_white_border.png',
-    badges: ['Event Champion', 'Community Builder'],
-  },
-  {
-    rank: 4,
-    name: 'Michael Nguyen',
-    points: 360,
-    avatar: '/asc_logo_white_border.png',
-    badges: ['Top Volunteer', 'Team Player'],
-  },
-  {
-    rank: 5,
-    name: 'Jessica Lee',
-    points: 340,
-    avatar: '/asc_logo_white_border.png',
-    badges: ['Rising Star', 'Mentor'],
-  },
-];
+// Revalidate every 5 minutes
+export const revalidate = 300;
 
-const achievements = [
-  {
-    icon: Trophy,
-    title: 'Event Champion',
-    description: 'Attend 10+ events in a semester',
-    color: 'from-yellow-400 to-yellow-600',
-  },
-  {
-    icon: Star,
-    title: 'Cultural Ambassador',
-    description: 'Lead a cultural presentation or workshop',
-    color: 'from-blue-400 to-blue-600',
-  },
-  {
-    icon: Medal,
-    title: 'Top Volunteer',
-    description: 'Complete 20+ volunteer hours',
-    color: 'from-purple-400 to-purple-600',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Leadership Award',
-    description: 'Serve in an executive board position',
-    color: 'from-red-400 to-red-600',
-  },
-];
+export default async function ClubScorePage() {
+  const leaderboard = await getLeaderboardData();
+  const topThree = leaderboard.slice(0, 3);
+  const rest = leaderboard.slice(3);
 
-const pointsBreakdown = [
-  { activity: 'Event Attendance', points: 10 },
-  { activity: 'Event Organization', points: 50 },
-  { activity: 'Volunteer Hours (per hour)', points: 5 },
-  { activity: 'Workshop Presentation', points: 30 },
-  { activity: 'Committee Participation', points: 20 },
-  { activity: 'Recruiting New Members', points: 15 },
-];
-
-export default function ClubScorePage() {
   return (
     <div className="min-h-screen pt-20">
-      {/* Header Section */}
-      <Section variant="default" spacing="lg" className="pt-16">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Trophy className="w-12 h-12 text-[var(--old-gold)] mr-4" />
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
-                Club <span className="text-[var(--old-gold)]">Score</span>
-              </h1>
-            </div>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Celebrating member engagement and contributions to our community
-            </p>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Leaderboard */}
-      <Section variant="accent" spacing="lg">
-        <Container>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-            Current Leaderboard
-          </h2>
-          <div className="max-w-4xl mx-auto space-y-4">
-            {leaderboard.map((member) => (
-              <Card
-                key={member.rank}
-                variant="elevated"
-                className={`p-6 ${
-                  member.rank === 1
-                    ? 'border-2 border-[var(--old-gold)] shadow-xl'
-                    : ''
-                }`}
-              >
-                <div className="flex items-center gap-6">
-                  {/* Rank */}
-                  <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-2xl ${
-                      member.rank === 1
-                        ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white'
-                        : member.rank === 2
-                        ? 'bg-gradient-to-br from-gray-300 to-gray-400 text-white'
-                        : member.rank === 3
-                        ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    {member.rank}
-                  </div>
-
-                  {/* Avatar */}
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)]" />
-
-                  {/* Info */}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
-                      {member.name}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {member.badges.map((badge, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 bg-[var(--old-gold)] bg-opacity-10 text-[var(--old-gold)] text-xs font-semibold rounded-full"
-                        >
-                          {badge}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Points */}
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-[var(--old-gold)]">
-                      {member.points}
-                    </div>
-                    <div className="text-sm text-gray-600">points</div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Achievements */}
-      <Section variant="default" spacing="lg">
-        <Container>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-            Available Achievements
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement) => {
-              const Icon = achievement.icon;
-              return (
-                <Card
-                  key={achievement.title}
-                  variant="elevated"
-                  className="text-center p-8 hover:shadow-xl transition-shadow"
-                >
-                  <div
-                    className={`w-20 h-20 mx-auto mb-4 bg-gradient-to-br ${achievement.color} rounded-full flex items-center justify-center`}
-                  >
-                    <Icon className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{achievement.description}</p>
-                </Card>
-              );
-            })}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Points System */}
-      <Section variant="accent" spacing="lg">
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-              How Points Work
-            </h2>
-            <Card variant="elevated" className="p-8">
-              <p className="text-lg text-gray-600 mb-6 text-center">
-                Earn points by actively participating in ASC activities and 
-                contributing to our community. Points unlock achievements and 
-                recognition!
-              </p>
-              <div className="space-y-4">
-                {pointsBreakdown.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center pb-4 border-b border-gray-200 last:border-0"
-                  >
-                    <span className="text-gray-700 font-medium">
-                      {item.activity}
-                    </span>
-                    <span className="text-[var(--old-gold)] font-bold text-lg">
-                      +{item.points} pts
-                    </span>
-                  </div>
-                ))}
+      {/* Header Section with Top 3 Podium */}
+      {topThree.length > 0 && (
+        <Section variant="accent" spacing="lg" className="pt-16">
+          <Container>
+            {/* Club Score Header */}
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <div className="flex items-center justify-center mb-6">
+                <Trophy className="w-12 h-12 text-[var(--old-gold)] mr-4" />
+                <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
+                  Club <span className="text-[var(--old-gold)]">Score</span>
+                </h1>
               </div>
-            </Card>
-          </div>
-        </Container>
-      </Section>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Celebrate our member engagement and contributions to our community!
+              </p>
+            </div>
 
-      {/* Motivation Section */}
-      <Section variant="default" spacing="lg">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Start Earning Points Today!
+            {/* Top Performers Podium */}
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Top Performers
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Every contribution matters. Whether you&apos;re attending events, 
-              volunteering, or taking on leadership roles, your participation 
-              makes ASC stronger. Track your progress and celebrate your achievements!
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* 2nd Place */}
+              {topThree[1] && (
+                <div className="order-2 md:order-1">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-8">
+                    <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Medal className="w-10 h-10 text-gray-600" />
+                    </div>
+                    <div className="text-4xl font-bold text-gray-400 mb-2">2nd</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{topThree[1].name}</h3>
+                    <div className="text-3xl font-bold text-[var(--old-gold)]">
+                      {topThree[1].points} pts
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 1st Place */}
+              {topThree[0] && (
+                <div className="order-1 md:order-2">
+                  <div className="bg-gradient-to-br from-[var(--old-gold)] to-yellow-600 rounded-2xl shadow-2xl p-6 text-center transform scale-105">
+                    <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Trophy className="w-12 h-12 text-[var(--old-gold)]" />
+                    </div>
+                    <div className="text-5xl font-bold text-white mb-2">1st</div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{topThree[0].name}</h3>
+                    <div className="text-4xl font-bold text-white">
+                      {topThree[0].points} pts
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 3rd Place */}
+              {topThree[2] && (
+                <div className="order-3">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-12">
+                    <div className="w-20 h-20 bg-amber-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Medal className="w-10 h-10 text-amber-100" />
+                    </div>
+                    <div className="text-4xl font-bold text-amber-700 mb-2">3rd</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{topThree[2].name}</h3>
+                    <div className="text-3xl font-bold text-[var(--old-gold)]">
+                      {topThree[2].points} pts
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Full Leaderboard */}
+      {rest.length > 0 && (
+        <Section variant="default" spacing="lg">
+          <Container>
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              Full Rankings
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-6 mb-16">
+              {rest.map((member) => (
+                <LeaderboardItem
+                  key={member.rank}
+                  rank={member.rank ?? 0}
+                  name={member.name}
+                  points={member.points}
+                />
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {leaderboard.length === 0 && (
+        <Section variant="accent" spacing="lg">
+          <Container>
+            <div className="text-center text-gray-500 py-12">
+              <Star className="w-16 h-16 mx-auto mb-4 opacity-50" />
+              <p className="text-xl">No leaderboard data available yet</p>
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Membership Perks */}
+      <Section variant="accent" spacing="lg">
+        <Container>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 text-center">
+              Standard <span className="text-[var(--old-gold)]">Membership Perks</span>
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Points only accumulate for paid ASC members!
             </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card variant="bordered" className="p-6">
-                <div className="text-4xl font-bold text-[var(--old-gold)] mb-2">
-                  50+
+            
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">1 Point Per Event</h3>
+                    <p className="text-gray-600">Earn one ASCore point for every event you attend</p>
+                  </div>
                 </div>
-                <div className="text-gray-600">Active Members</div>
               </Card>
-              <Card variant="bordered" className="p-6">
-                <div className="text-4xl font-bold text-[var(--old-gold)] mb-2">
-                  2,500+
+
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Trophy className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">MAASU Conference Priority</h3>
+                    <p className="text-gray-600">Top point earners get priority and accommodations for all MAASU Conferences</p>
+                  </div>
                 </div>
-                <div className="text-gray-600">Points Earned This Year</div>
               </Card>
-              <Card variant="bordered" className="p-6">
-                <div className="text-4xl font-bold text-[var(--old-gold)] mb-2">
-                  15+
+
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Gift className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Member of the Month</h3>
+                    <p className="text-gray-600">Win a gift basket of ASC items and more!</p>
+                  </div>
                 </div>
-                <div className="text-gray-600">Unique Achievements</div>
+              </Card>
+
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Ticket className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Event Discounts</h3>
+                    <p className="text-gray-600">Discounted tickets for Assembly and End of Year Banquet</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <ShoppingBag className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Discounted Merch</h3>
+                    <p className="text-gray-600">Get exclusive discounts on all ASC merchandise</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card variant="elevated" className="p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="w-6 h-6 text-[var(--old-gold)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Trade Points for Rewards</h3>
+                    <p className="text-gray-600">Redeem your points for merch and other exclusive items</p>
+                  </div>
+                </div>
               </Card>
             </div>
           </div>
