@@ -7,12 +7,6 @@ import Link from 'next/link';
 
 async function getGalleryImages(): Promise<GalleryImage[]> {
   try {
-    console.log('=== SANITY CONNECTION INFO ===');
-    console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
-    console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET);
-    console.log('API Version:', process.env.NEXT_PUBLIC_SANITY_API_VERSION);
-    
-    // Test connection with a simple query
     const testQuery = `*[_type == "gallery"] {
       _id,
       title,
@@ -24,25 +18,14 @@ async function getGalleryImages(): Promise<GalleryImage[]> {
     }`;
     
     const allImages = await client.fetch(testQuery, {}, { next: { revalidate: 0 } });
-    console.log('=== QUERY RESULTS ===');
-    console.log('Total gallery items found:', allImages.length);
     
     if (allImages.length > 0) {
-      console.log('Sample image data:', JSON.stringify(allImages[0], null, 2));
-      // Return all images for now (we'll filter later once it works)
       return allImages;
-    } else {
-      console.warn('⚠️  No gallery items found!');
-      console.warn('Possible issues:');
-      console.warn('1. Wrong dataset - check if your images are in "production" instead of "development"');
-      console.warn('2. Schema not deployed - the gallery schema might not be recognized');
-      console.warn('3. Documents not published - make sure images are published, not drafts');
     }
     
     return [];
   } catch (error) {
-    console.error('=== ERROR FETCHING IMAGES ===');
-    console.error('Error:', error);
+    console.error('Error fetching gallery images:', error);
     return [];
   }
 }

@@ -9,8 +9,9 @@ import { Container, Button } from '@/components/ui';
 const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'FAQ', href: '/faq' },
   { name: 'Alumni', href: '/alumni' },
-  { name: 'Monthly', href: '/monthly' },
+  { name: 'Events', href: '/events' },
   { name: 'Club Score', href: '/club-score' },
 ];
 

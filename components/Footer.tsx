@@ -47,7 +47,7 @@ const footerLinks = {
     { name: 'Alumni', href: '/alumni' },
   ],
   resources: [
-    { name: 'Monthly', href: '/monthly' },
+    { name: 'Events', href: '/events' },
     { name: 'Club Score', href: '/club-score' },
     { name: 'Contact', href: '#contact' },
     { name: 'Join Us', href: '#join' },
