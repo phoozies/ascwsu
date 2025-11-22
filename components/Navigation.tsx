@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import { Container, Button } from '@/components/ui';
+import { Button } from '@/components/ui';
 
 const navigationItems = [
   { name: 'Home', href: '/' },
@@ -20,7 +20,7 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-      <Container>
+      <div className="max-w-full px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
@@ -33,8 +33,7 @@ export default function Navigation() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">ASC</span>
-              <span className="text-xs text-gray-600">Wichita State University</span>
+              <span className="text-xl font-bold text-gray-900">Asian Student Conference</span>
             </div>
           </Link>
 
@@ -88,7 +87,7 @@ export default function Navigation() {
             </div>
           </div>
         )}
-      </Container>
+      </div>
     </nav>
   );
 }

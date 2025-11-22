@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import { Instagram } from 'lucide-react';
-import { Container } from '@/components/ui';
+import Image from 'next/image';
+import { Instagram, Mail, MapPin } from 'lucide-react';
 
 // Custom icons
 const TikTokIcon = () => (
@@ -33,27 +32,6 @@ const LinktreeIcon = () => (
   </svg>
 );
 
-  const MailIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-    <path d="M4.30606 7.28017C4.14002 7.62375 4.06901 7.99473 4.03469 8.4148C3.99999 8.83953 3.99999 9.36401 4 10.0143V13.9857C3.99999 14.6359 3.99999 15.1604 4.03469 15.5852C4.07042 16.0225 4.14591 16.4066 4.32698 16.7619C4.6146 17.3264 5.07354 17.7854 5.63803 18.073C5.9934 18.2541 6.37752 18.3296 6.81483 18.3653C7.23955 18.4 7.76404 18.4 8.4143 18.4H15.5857C16.236 18.4 16.7605 18.4 17.1852 18.3653C17.6225 18.3296 18.0066 18.2541 18.362 18.073C18.9265 17.7854 19.3854 17.3264 19.673 16.7619C19.8541 16.4066 19.9296 16.0225 19.9653 15.5852C20 15.1604 20 14.6359 20 13.9857V10.0143C20 9.36401 20 8.83953 19.9653 8.4148C19.931 7.99473 19.86 7.62375 19.6939 7.28017L13.8997 12.0209C12.7946 12.9251 11.2054 12.9251 10.1003 12.0209L4.30606 7.28017Z"></path>
-    <path d="M18.9609 6.3295C18.7792 6.17262 18.5783 6.0372 18.362 5.92696C18.0066 5.74588 17.6225 5.6704 17.1852 5.63467C16.7605 5.59997 16.236 5.59997 15.5857 5.59998H8.41432C7.76406 5.59997 7.23955 5.59997 6.81483 5.63467C6.37752 5.6704 5.9934 5.74588 5.63803 5.92696C5.42166 6.0372 5.2208 6.17262 5.03915 6.3295L10.8602 11.0922C11.5232 11.6347 12.4768 11.6347 13.1398 11.0922L18.9609 6.3295Z"></path>
-  </svg>
-);
-
-const footerLinks = {
-  quickLinks: [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Alumni', href: '/alumni' },
-  ],
-  resources: [
-    { name: 'Events', href: '/events' },
-    { name: 'Club Score', href: '/club-score' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Join Us', href: '#join' },
-  ],
-};
-
 const socialLinks = [
   { name: 'Linktree', icon: LinktreeIcon, href: 'https://linktr.ee/ascwsu' },
   { name: 'Facebook', icon: FacebookIcon, href: 'https://www.facebook.com/ASCWSU' },
@@ -61,73 +39,63 @@ const socialLinks = [
   { name: 'TikTok', icon: TikTokIcon, href: 'https://www.tiktok.com/@wsu_asc' },
   { name: 'YouTube', icon: YoutubeIcon, href: 'https://www.youtube.com/@ascwichita' },
   { name: 'Discord', icon: DiscordIcon, href: 'https://discord.com/invite/XK6sZc7rVg' },
-  { name: 'Email', icon: MailIcon, href: 'mailto:asc.shockers@gmail.com' },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <Container>
+      <div className="max-w-full px-8">
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* About Section */}
-            <div className="md:col-span-2">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Asian Student Conference
-              </h3>
-              <p className="text-sm mb-4">
-                Building community, celebrating culture, and fostering leadership at 
-                Wichita State University.
-              </p>
-              <div className="flex space-x-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Left Column: Logo */}
+            <div className="flex flex-col items-center text-center">
+              <Image 
+                src="/asc_logo_white_border.png" 
+                alt="ASC Logo" 
+                width={128}
+                height={128}
+                className="mb-4"
+              />
+            </div>
+
+            {/* Middle Column: Social Links */}
+            <div className="flex flex-col items-center justify-center text-center">
+              <h4 className="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+              <div className="flex flex-wrap justify-center gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
                     <a
                       key={social.name}
                       href={social.href}
-                      className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[var(--old-gold)] transition-colors"
+                      className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[var(--old-gold)] transition-colors"
                       aria-label={social.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon />
                     </a>
                   );
                 })}
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                {footerLinks.quickLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-[var(--old-gold)] transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                {footerLinks.resources.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-[var(--old-gold)] transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {/* Right Column: Contact */}
+            <div className="flex flex-col items-center md:items-center text-center">
+              <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
+              <div className="space-y-3 text-sm">
+                <a 
+                  href="mailto:asc.shockers@gmail.com"
+                  className="flex items-center gap-2 hover:text-[var(--old-gold)] transition-colors"
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>asc.shockers@gmail.com</span>
+                </a>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5" />
+                  <span>Wichita, Kansas</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -138,7 +106,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }

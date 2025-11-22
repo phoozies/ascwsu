@@ -1,10 +1,10 @@
-import HeroSection from '@/components/sections/HeroSection';
+import LandingSection from '@/components/sections/LandingSection';
 import GoalsSection from '@/components/sections/GoalsSection';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      <LandingSection />
       <GoalsSection />
     </div>
   );

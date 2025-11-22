@@ -1,7 +1,6 @@
 import { Button, Container } from '@/components/ui';
 import ImageSlideshow from '@/components/ImageSlideshow';
 import { client } from '@/sanity/lib/client';
-import { GALLERY_IMAGES_QUERY } from '@/lib/sanity/queries';
 import type { GalleryImage } from '@/types/sanity';
 import Link from 'next/link';
 
@@ -30,7 +29,7 @@ async function getGalleryImages(): Promise<GalleryImage[]> {
   }
 }
 
-export default async function HeroSection() {
+export default async function LandingSection() {
   const images = await getGalleryImages();
 
   return (
@@ -68,13 +67,6 @@ export default async function HeroSection() {
             </div>
           </div>
         </Container>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-white/70 rounded-full" />
-        </div>
       </div>
     </section>
   );
