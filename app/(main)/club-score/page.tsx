@@ -56,10 +56,10 @@ export default async function ClubScorePage() {
                 </div>
               </div>
 
-              {/* Right Column: Top Performers Podium */}
+              {/* Right Column: Top Members Podium */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Top Performers
+                  Top Members
                 </h2>
                 <div className="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto">
                   {/* 2nd Place */}
