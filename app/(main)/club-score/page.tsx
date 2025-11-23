@@ -13,125 +13,162 @@ export default async function ClubScorePage() {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Header Section with Top 3 Podium */}
-      {topThree.length > 0 && (
-        <Section variant="accent" spacing="lg" className="pt-16">
-          <Container>
-            {/* Club Score Header - Full Width Row */}
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <div className="flex items-center justify-center mb-6">
-                <Trophy className="w-12 h-12 text-[var(--old-gold)] mr-4" />
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
-                  Club <span className="text-[var(--old-gold)]">Score</span>
-                </h1>
-              </div>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Celebrate our member engagement and contributions to our community!
-              </p>
+      {/* Header Section */}
+      <Section variant="accent" spacing="lg" className="pt-16">
+        <Container>
+          {/* Club Score Header - Full Width Row */}
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="flex items-center justify-center mb-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
+                Club <span className="text-[var(--old-gold)]">Score</span>
+              </h1>
             </div>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Celebrate our member engagement and contributions to our community!
+            </p>
+          </div>
 
-            {/* Two Column Layout: Instagram Embed (Left) + Top Performers (Right) */}
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Left Column: Member of the Month Instagram Embed */}
-              <div>
-                <div className="flex items-center justify-center mb-8">
-                  <Star className="w-8 h-8 text-[var(--old-gold)] mr-3" />
-                  <h2 className="text-3xl font-bold text-gray-900">Member of the Month</h2>
-                  <Star className="w-8 h-8 text-[var(--old-gold)] ml-3" />
-                </div>
-                <div className="max-w-xl mx-auto">
-                  <iframe
-                    src="https://www.instagram.com/p/DQkLjdzCdoA/embed"
-                    className="w-full border-0 overflow-hidden rounded-lg shadow-lg"
-                    style={{
-                      maxWidth: '540px',
-                      minHeight: '680px',
-                      margin: '0 auto',
-                      display: 'block'
-                    }}
-                    frameBorder="0"
-                    scrolling="no"
-                    allowTransparency
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Top Members Podium */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Top Members
-                </h2>
-                <div className="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-                  {/* 2nd Place */}
-                  {topThree[1] && (
-                    <div className="order-2 md:order-1">
-                      <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-8">
-                        <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Medal className="w-8 h-8 text-gray-600" />
-                        </div>
-                        <div className="text-3xl font-bold text-gray-400 mb-2">2nd</div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[1].name}</h3>
-                        <div className="text-2xl font-bold text-[var(--old-gold)]">
-                          {topThree[1].points} pts
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 1st Place */}
-                  {topThree[0] && (
-                    <div className="order-1 md:order-2">
-                      <div className="bg-gradient-to-br from-[var(--old-gold)] to-yellow-600 rounded-2xl shadow-2xl p-6 text-center transform scale-105">
-                        <div className="w-20 h-20 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Trophy className="w-10 h-10 text-[var(--old-gold)]" />
-                        </div>
-                        <div className="text-4xl font-bold text-white mb-2">1st</div>
-                        <h3 className="text-xl font-bold text-white mb-2">{topThree[0].name}</h3>
-                        <div className="text-3xl font-bold text-white">
-                          {topThree[0].points} pts
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 3rd Place */}
-                  {topThree[2] && (
-                    <div className="order-3">
-                      <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-12">
-                        <div className="w-16 h-16 bg-amber-700 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Medal className="w-8 h-8 text-amber-100" />
-                        </div>
-                        <div className="text-3xl font-bold text-amber-700 mb-2">3rd</div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[2].name}</h3>
-                        <div className="text-2xl font-bold text-[var(--old-gold)]">
-                          {topThree[2].points} pts
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
+          {/* Member of the Month Instagram Embed */}
+          <div className="mb-16">
+            <div className="flex items-center justify-center mb-8">
+              <Star className="w-8 h-8 text-[var(--old-gold)] mr-3" />
+              <h2 className="text-3xl font-bold text-gray-900">Member of the Month</h2>
+              <Star className="w-8 h-8 text-[var(--old-gold)] ml-3" />
             </div>
-          </Container>
-        </Section>
-      )}
+            <div className="max-w-xl mx-auto">
+              <iframe
+                src="https://www.instagram.com/p/DQkLjdzCdoA/embed"
+                className="w-full border-0 overflow-hidden rounded-lg shadow-lg"
+                style={{
+                  maxWidth: '540px',
+                  minHeight: '680px',
+                  margin: '0 auto',
+                  display: 'block'
+                }}
+                frameBorder="0"
+                scrolling="no"
+                allowTransparency
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
 
       {/* Full Leaderboard */}
-      {rest.length > 0 && (
+      {leaderboard.length > 0 && (
         <Section variant="default" spacing="lg">
           <Container>
             <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
               Full Rankings
             </h2>
-            <div className="max-w-4xl mx-auto space-y-6 mb-16">
-              {rest.map((member) => (
-                <LeaderboardItem
-                  key={member.rank}
-                  rank={member.rank ?? 0}
-                  name={member.name}
-                  points={member.points}
-                />
-              ))}
+            <div className="max-w-7xl mx-auto">
+              {/* Top 3 Podium */}
+              {topThree.length > 0 && (
+                <div className="mb-16">
+                  <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                    {/* 2nd Place */}
+                    {topThree[1] && (
+                      <div className="order-2 md:order-1">
+                        <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-8">
+                          <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <Medal className="w-8 h-8 text-gray-600" />
+                          </div>
+                          <div className="text-3xl font-bold text-gray-400 mb-2">2nd</div>
+                          <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[1].name}</h3>
+                          <div className="text-2xl font-bold text-[var(--old-gold)]">
+                            {topThree[1].points} pts
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 1st Place */}
+                    {topThree[0] && (
+                      <div className="order-1 md:order-2">
+                        <div className="bg-gradient-to-br from-[var(--old-gold)] to-yellow-600 rounded-2xl shadow-2xl p-6 text-center transform scale-105">
+                          <div className="w-20 h-20 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <Trophy className="w-10 h-10 text-[var(--old-gold)]" />
+                          </div>
+                          <div className="text-4xl font-bold text-white mb-2">1st</div>
+                          <h3 className="text-xl font-bold text-white mb-2">{topThree[0].name}</h3>
+                          <div className="text-3xl font-bold text-white">
+                            {topThree[0].points} pts
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 3rd Place */}
+                    {topThree[2] && (
+                      <div className="order-3">
+                        <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-12">
+                          <div className="w-16 h-16 bg-amber-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <Medal className="w-8 h-8 text-amber-100" />
+                          </div>
+                          <div className="text-3xl font-bold text-amber-700 mb-2">3rd</div>
+                          <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[2].name}</h3>
+                          <div className="text-2xl font-bold text-[var(--old-gold)]">
+                            {topThree[2].points} pts
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Three Column Layout for Rest */}
+              {rest.length > 0 && (
+                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                  {(() => {
+                    const itemsPerColumn = Math.ceil(rest.length / 3);
+                    const middleColumn = rest.slice(0, itemsPerColumn);
+                    const leftColumn = rest.slice(itemsPerColumn, itemsPerColumn * 2);
+                    const rightColumn = rest.slice(itemsPerColumn * 2);
+
+                    return (
+                      <>
+                        {/* Left Column */}
+                        <div className="space-y-6">
+                          {leftColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                            />
+                          ))}
+                        </div>
+
+                        {/* Middle Column - Most Prominent */}
+                        <div className="space-y-6">
+                          {middleColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                              variant="prominent"
+                            />
+                          ))}
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="space-y-6">
+                          {rightColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              )}
             </div>
           </Container>
         </Section>
