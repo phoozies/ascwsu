@@ -128,6 +128,7 @@ const theme = createTheme({
           backdropFilter: 'blur(8px)',
           color: '#111827',
           boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+          borderRadius: 0,
         },
       },
     },

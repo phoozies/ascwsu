@@ -24,8 +24,8 @@ export default function FAQPage() {
   ];
 
   return (
-    <Box sx={{ minHeight: '100vh', pt: 10 }}>
-      <Section variant="accent" spacing="lg" className="pt-16">
+    <Box sx={{ minHeight: '100vh' }}>
+      <Section variant="accent" spacing="lg">
         <Container>
           {/* Header */}
           <Box sx={{ maxWidth: '48rem', mx: 'auto', textAlign: 'center', mb: { xs: 4, sm: 6 } }}>

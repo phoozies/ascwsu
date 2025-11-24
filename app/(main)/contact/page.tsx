@@ -2,7 +2,7 @@ import { Container, Section } from '@/components/ui';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       <Section variant="accent" spacing="lg" className="pt-16">
         <Container>
           <div className="max-w-4xl mx-auto text-center">

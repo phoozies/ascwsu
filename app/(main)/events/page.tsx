@@ -18,7 +18,7 @@ const instagramPosts = [
 
 export default function EventsPage() {
   return (
-    <Box sx={{ minHeight: '100vh', pt: 10 }}>
+    <Box sx={{ minHeight: '100vh' }}>
       {/* This Month's Events Carousel */}
       <Section variant="accent" spacing="lg">
         <Container>

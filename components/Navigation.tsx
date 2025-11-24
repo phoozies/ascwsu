@@ -35,8 +35,8 @@ export default function Navigation() {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} suppressHydrationWarning>
-        <Toolbar sx={{ px: { xs: 2, sm: 4 } }}>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar sx={{ px: { xs: 2, sm: 4 } }} suppressHydrationWarning>
           {/* Logo */}
           <Box
             component={Link}

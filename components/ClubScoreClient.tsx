@@ -27,7 +27,7 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
 
   if (leaderboard.length === 0) {
     return (
-      <Section variant="accent" spacing="lg" className="pt-16">
+      <Section variant="accent" spacing="lg">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="flex items-center justify-center mb-6">
@@ -56,7 +56,7 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
   return (
     <>
       {/* Header Section */}
-      <Section variant="accent" spacing="lg" className="pt-16">
+      <Section variant="accent" spacing="lg">
         <Container>
           {/* Club Score Header - Full Width Row */}
           <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
@@ -329,7 +329,7 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
 
 export default function ClubScoreClientWrapper({ leaderboard }: { leaderboard: MemberScore[] }) {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       <Suspense fallback={
         <>
           <Section variant="accent" spacing="lg" className="pt-16">
