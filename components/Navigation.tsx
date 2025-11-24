@@ -4,7 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { Button } from '@/components/ui';
 
 const navigationItems = [
@@ -24,89 +34,151 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-      <div className="max-w-full px-8">
-        <div className="flex items-center justify-between h-20">
+    <>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar sx={{ px: { xs: 2, sm: 4 } }}>
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 transition-transform group-hover:scale-105">
+          <Box
+            component={Link}
+            href="/"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              textDecoration: 'none',
+              flexGrow: 1,
+              '&:hover': {
+                transform: 'scale(1.02)',
+                transition: 'transform 0.2s'
+              }
+            }}
+          >
+            <Box sx={{ position: 'relative', width: 48, height: 48 }}>
               <Image
                 src="/asc_logo_white_border.png"
                 alt="ASC Logo"
                 fill
-                className="object-contain"
+                style={{ objectFit: 'contain' }}
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">Asian Student Conference</span>
-            </div>
-          </Link>
+            </Box>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'text.primary',
+                fontWeight: 700,
+                display: { xs: 'none', sm: 'block' }
+              }}
+            >
+              Asian Student Conference
+            </Typography>
+          </Box>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 4 }}>
             {navigationItems.map((item) => {
               const isActive = pathname === item.href;
               return (
-                <Link
+                <Box
                   key={item.name}
+                  component={Link}
                   href={item.href}
-                  className={`font-medium transition-colors relative pb-1 ${
-                    isActive 
-                      ? 'text-[var(--old-gold)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--old-gold)]' 
-                      : 'text-gray-700 hover:text-[var(--old-gold)]'
-                  }`}
+                  sx={{
+                    position: 'relative',
+                    color: isActive ? 'primary.main' : 'text.primary',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                    pb: 0.5,
+                    '&:hover': {
+                      color: 'primary.main'
+                    },
+                    '&::after': isActive ? {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      bgcolor: 'primary.main'
+                    } : {}
+                  }}
                 >
                   {item.name}
-                </Link>
+                </Box>
               );
             })}
-            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="shadow-2xl">Join Us</Button>
-            </Link>
-          </div>
+            <Button
+              component={Link}
+              href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="small"
+            >
+              Join Us
+            </Button>
+          </Box>
 
           {/* Mobile Menu Button */}
-          <button
+          <IconButton
+            sx={{ display: { xs: 'flex', md: 'none' } }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-900" />
-            )}
-          </button>
-        </div>
+            {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+        </Toolbar>
+      </AppBar>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4">
-              {navigationItems.map((item) => {
-                const isActive = pathname === item.href;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`font-medium transition-colors px-2 py-2 relative ${
-                      isActive 
-                        ? 'text-[var(--old-gold)] border-l-4 border-[var(--old-gold)] pl-4' 
-                        : 'text-gray-700 hover:text-[var(--old-gold)]'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-              <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="shadow-2xl">Join Us</Button>
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': { width: 280, pt: 8 }
+        }}
+      >
+        <List>
+          {navigationItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <ListItem key={item.name} disablePadding>
+                <ListItemButton
+                  component={Link}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  sx={{
+                    color: isActive ? 'primary.main' : 'text.primary',
+                    borderLeft: isActive ? '4px solid' : 'none',
+                    borderColor: 'primary.main',
+                    pl: isActive ? 3 : 2,
+                    '&:hover': {
+                      color: 'primary.main'
+                    }
+                  }}
+                >
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+          <ListItem sx={{ pt: 2 }}>
+            <Button
+              component={Link}
+              href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              fullWidth
+              size="large"
+            >
+              Join Us
+            </Button>
+          </ListItem>
+        </List>
+      </Drawer>
+
+      {/* Spacer for fixed AppBar */}
+      <Toolbar />
+    </>
   );
 }

@@ -1,27 +1,23 @@
-import { HTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
+import MuiContainer, { ContainerProps as MuiContainerProps } from '@mui/material/Container';
 
-export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+export interface ContainerProps extends Omit<MuiContainerProps, 'maxWidth'> {
   size?: 'sm' | 'md' | 'lg' | 'full';
 }
 
 const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, size = 'lg', children, ...props }, ref) => {
-    const sizes = {
-      sm: 'max-w-3xl',
-      md: 'max-w-5xl',
-      lg: 'max-w-7xl',
-      full: 'max-w-full',
-    };
+  ({ size = 'lg', ...props }, ref) => {
+    const maxWidth = 
+      size === 'sm' ? 'md' :
+      size === 'md' ? 'lg' :
+      size === 'lg' ? 'xl' : false;
 
     return (
-      <div
+      <MuiContainer
         ref={ref}
-        className={cn('mx-auto px-4 sm:px-6 lg:px-8', sizes[size], className)}
+        maxWidth={maxWidth}
         {...props}
-      >
-        {children}
-      </div>
+      />
     );
   }
 );

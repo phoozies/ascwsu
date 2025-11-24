@@ -1,38 +1,45 @@
-import { HTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
+import Box, { BoxProps } from '@mui/material/Box';
 
-export interface SectionProps extends HTMLAttributes<HTMLElement> {
+export interface SectionProps extends BoxProps<'section'> {
   variant?: 'default' | 'accent' | 'dark';
   spacing?: 'sm' | 'md' | 'lg';
   fullHeight?: boolean;
 }
 
 const Section = forwardRef<HTMLElement, SectionProps>(
-  ({ className, variant = 'default', spacing = 'lg', fullHeight = true, children, ...props }, ref) => {
-    const variants = {
-      default: 'bg-white',
-      accent: 'bg-gray-50',
-      dark: 'bg-gray-900 text-white',
-    };
+  ({ variant = 'default', spacing = 'lg', fullHeight = true, sx, children, ...props }, ref) => {
+    const bgColor = 
+      variant === 'default' ? 'background.default' :
+      variant === 'accent' ? 'grey.50' : 'grey.900';
     
-    const spacings = {
-      sm: 'py-12',
-      md: 'py-16 lg:py-20',
-      lg: 'py-20 lg:py-28',
-    };
+    const textColor = variant === 'dark' ? 'white' : 'text.primary';
+    
+    const py = spacing === 'sm' ? { xs: 6, lg: 8 } :
+              spacing === 'md' ? { xs: 8, lg: 10 } :
+              { xs: 10, lg: 14 };
 
     return (
-      <section
+      <Box
         ref={ref}
-        className={cn(
-          variants[variant],
-          fullHeight ? 'min-h-screen flex items-center scroll-snap-align-start' : spacings[spacing],
-          className
-        )}
+        component="section"
+        sx={{
+          bgcolor: bgColor,
+          color: textColor,
+          ...(fullHeight ? {
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            scrollSnapAlign: 'start'
+          } : {
+            py
+          }),
+          ...sx
+        }}
         {...props}
       >
         {children}
-      </section>
+      </Box>
     );
   }
 );

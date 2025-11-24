@@ -1,6 +1,9 @@
 'use client';
 
 import { Suspense } from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { Container, Section, Card } from '@/components/ui';
 import { Trophy, Star, Medal, Gift, Ticket, ShoppingBag, Sparkles } from 'lucide-react';
 import LeaderboardItem from '@/components/LeaderboardItem';
@@ -110,62 +113,137 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
           <div className="max-w-7xl mx-auto">
             {/* Top 3 Podium */}
             {topThree.length > 0 && (
-              <div className="mb-16">
-                <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              <Box sx={{ mb: 8 }}>
+                <Grid container spacing={3} sx={{ maxWidth: '48rem', mx: 'auto' }}>
                   {/* 2nd Place */}
                   {topThree[1] && (
-                    <div className="order-2 md:order-1">
-                      <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-8">
-                        <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ order: { xs: 2, md: 1 } }}>
+                      <Box
+                        sx={{
+                          bgcolor: 'white',
+                          borderRadius: 4,
+                          boxShadow: 3,
+                          p: 3,
+                          textAlign: 'center',
+                          transform: { md: 'translateY(2rem)' },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 64,
+                            height: 64,
+                            bgcolor: 'grey.300',
+                            borderRadius: '50%',
+                            mx: 'auto',
+                            mb: 2,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
                           <Medal className="w-8 h-8 text-gray-600" />
-                        </div>
-                        <div className="text-3xl font-bold text-gray-400 mb-2">2nd</div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[1].name}</h3>
-                        <div className="text-2xl font-bold text-[var(--old-gold)]">
+                        </Box>
+                        <Typography variant="h3" sx={{ fontWeight: 700, color: 'grey.400', mb: 1 }}>
+                          2nd
+                        </Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 700, color: 'grey.900', mb: 1 }}>
+                          {topThree[1].name}
+                        </Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 700, color: 'primary.main' }}>
                           {topThree[1].points} pts
-                        </div>
-                      </div>
-                    </div>
+                        </Typography>
+                      </Box>
+                    </Grid>
                   )}
 
                   {/* 1st Place */}
                   {topThree[0] && (
-                    <div className="order-1 md:order-2">
-                      <div className="bg-gradient-to-br from-[var(--old-gold)] to-yellow-600 rounded-2xl shadow-2xl p-6 text-center transform scale-105">
-                        <div className="w-20 h-20 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ order: { xs: 1, md: 2 } }}>
+                      <Box
+                        sx={{
+                          background: 'linear-gradient(135deg, var(--old-gold) 0%, #fbbf24 100%)',
+                          borderRadius: 4,
+                          boxShadow: 6,
+                          p: 3,
+                          textAlign: 'center',
+                          transform: 'scale(1.05)',
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 80,
+                            height: 80,
+                            bgcolor: 'white',
+                            borderRadius: '50%',
+                            mx: 'auto',
+                            mb: 2,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
                           <Trophy className="w-10 h-10 text-[var(--old-gold)]" />
-                        </div>
-                        <div className="text-4xl font-bold text-white mb-2">1st</div>
-                        <h3 className="text-xl font-bold text-white mb-2">{topThree[0].name}</h3>
-                        <div className="text-3xl font-bold text-white">
+                        </Box>
+                        <Typography variant="h2" sx={{ fontWeight: 700, color: 'white', mb: 1 }}>
+                          1st
+                        </Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 700, color: 'white', mb: 1 }}>
+                          {topThree[0].name}
+                        </Typography>
+                        <Typography variant="h4" sx={{ fontWeight: 700, color: 'white' }}>
                           {topThree[0].points} pts
-                        </div>
-                      </div>
-                    </div>
+                        </Typography>
+                      </Box>
+                    </Grid>
                   )}
 
                   {/* 3rd Place */}
                   {topThree[2] && (
-                    <div className="order-3">
-                      <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-12">
-                        <div className="w-16 h-16 bg-amber-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ order: 3 }}>
+                      <Box
+                        sx={{
+                          bgcolor: 'white',
+                          borderRadius: 4,
+                          boxShadow: 3,
+                          p: 3,
+                          textAlign: 'center',
+                          transform: { md: 'translateY(3rem)' },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 64,
+                            height: 64,
+                            bgcolor: 'rgb(180, 83, 9)',
+                            borderRadius: '50%',
+                            mx: 'auto',
+                            mb: 2,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
                           <Medal className="w-8 h-8 text-amber-100" />
-                        </div>
-                        <div className="text-3xl font-bold text-amber-700 mb-2">3rd</div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">{topThree[2].name}</h3>
-                        <div className="text-2xl font-bold text-[var(--old-gold)]">
+                        </Box>
+                        <Typography variant="h3" sx={{ fontWeight: 700, color: 'rgb(180, 83, 9)', mb: 1 }}>
+                          3rd
+                        </Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 700, color: 'grey.900', mb: 1 }}>
+                          {topThree[2].name}
+                        </Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 700, color: 'primary.main' }}>
                           {topThree[2].points} pts
-                        </div>
-                      </div>
-                    </div>
+                        </Typography>
+                      </Box>
+                    </Grid>
                   )}
-                </div>
-              </div>
+                </Grid>
+              </Box>
             )}
 
             {/* Three Column Layout for Rest */}
             {rest.length > 0 && (
-              <div className="grid md:grid-cols-3 gap-6 mb-16">
+              <Grid container spacing={3} sx={{ mb: 8 }}>
                 {(() => {
                   // Calculate items per column ensuring middle is longest
                   const totalItems = rest.length;
@@ -195,45 +273,51 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
                   return (
                     <>
                       {/* Left Column */}
-                      <div className="space-y-6">
-                        {leftColumn.map((member) => (
-                          <LeaderboardItem
-                            key={member.rank}
-                            rank={member.rank ?? 0}
-                            name={member.name}
-                            points={member.points}
-                          />
-                        ))}
-                      </div>
+                      <Grid size={{ xs: 12, md: 4 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                          {leftColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                            />
+                          ))}
+                        </Box>
+                      </Grid>
 
                       {/* Middle Column - Most Prominent */}
-                      <div className="space-y-6">
-                        {middleColumn.map((member) => (
-                          <LeaderboardItem
-                            key={member.rank}
-                            rank={member.rank ?? 0}
-                            name={member.name}
-                            points={member.points}
-                            variant="prominent"
-                          />
-                        ))}
-                      </div>
+                      <Grid size={{ xs: 12, md: 4 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                          {middleColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                              variant="prominent"
+                            />
+                          ))}
+                        </Box>
+                      </Grid>
 
                       {/* Right Column */}
-                      <div className="space-y-6">
-                        {rightColumn.map((member) => (
-                          <LeaderboardItem
-                            key={member.rank}
-                            rank={member.rank ?? 0}
-                            name={member.name}
-                            points={member.points}
-                          />
-                        ))}
-                      </div>
+                      <Grid size={{ xs: 12, md: 4 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                          {rightColumn.map((member) => (
+                            <LeaderboardItem
+                              key={member.rank}
+                              rank={member.rank ?? 0}
+                              name={member.name}
+                              points={member.points}
+                            />
+                          ))}
+                        </Box>
+                      </Grid>
                     </>
                   );
                 })()}
-              </div>
+              </Grid>
             )}
           </div>
         </Container>

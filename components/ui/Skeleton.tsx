@@ -1,20 +1,18 @@
-import { HTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
+import MuiSkeleton, { SkeletonProps as MuiSkeletonProps } from '@mui/material/Skeleton';
 
-export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'circular';
+export interface SkeletonProps extends MuiSkeletonProps {
+  variant?: 'default' | 'circular' | 'text' | 'rectangular';
 }
 
-const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
-  ({ className, variant = 'default', ...props }, ref) => {
+const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
+  ({ variant = 'default', ...props }, ref) => {
+    const muiVariant = variant === 'default' ? 'rectangular' : variant;
+    
     return (
-      <div
+      <MuiSkeleton
         ref={ref}
-        className={cn(
-          'animate-pulse bg-gray-200',
-          variant === 'circular' ? 'rounded-full' : 'rounded-lg',
-          className
-        )}
+        variant={muiVariant}
         {...props}
       />
     );

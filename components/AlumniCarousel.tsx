@@ -1,13 +1,10 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 
 interface AlumniProfile {
   name: string;
@@ -23,77 +20,30 @@ interface AlumniCarouselProps {
 
 export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
   return (
-    <div className="w-full relative">
-      <div className="relative px-0 md:px-16">
-        {/* Custom Navigation Buttons - Hidden on Mobile */}
-        <button 
-          className="hidden md:flex swiper-button-prev-custom-alumni absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button 
-          className="hidden md:flex swiper-button-next-custom-alumni absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-      
+    <div className="w-full max-w-full overflow-hidden">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-        spaceBetween={10}
-        slidesPerView={1}
-        navigation={{
-          prevEl: '.swiper-button-prev-custom-alumni',
-          nextEl: '.swiper-button-next-custom-alumni',
-        }}
-        pagination={{ 
-          clickable: true,
-          dynamicBullets: true,
-          dynamicMainBullets: 3,
-          el: '.swiper-pagination-custom-alumni',
-        }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        watchOverflow={true}
+        modules={[Pagination]}
+        slidesPerView={3}
+        spaceBetween={30}
+        pagination={{ clickable: true }}
         breakpoints={{
-          640: {
+          0: {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 10,
           },
-          768: {
+          640: {
             slidesPerView: 2,
-            spaceBetween: 30,
-            loop: true,
-            centeredSlides: true,
-            effect: 'coverflow',
-            coverflowEffect: {
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            },
+            spaceBetween: 20,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 40,
-            loop: true,
-            centeredSlides: true,
-            effect: 'coverflow',
-            coverflowEffect: {
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            },
+            spaceBetween: 30,
           },
         }}
-        className="alumni-carousel pb-0"
       >
         {alumni.map((alumnus, index) => (
           <SwiperSlide key={index}>
-            <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl mx-2 sm:mx-0">
+            <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)]">
                 <Image
@@ -127,10 +77,6 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
           </SwiperSlide>
         ))}
       </Swiper>
-      </div>
-      
-      {/* Custom Pagination */}
-      <div className="swiper-pagination-custom-alumni mt-8"></div>
     </div>
   );
 }

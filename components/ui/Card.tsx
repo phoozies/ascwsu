@@ -1,26 +1,31 @@
-import { HTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends Omit<PaperProps, 'variant'> {
   variant?: 'default' | 'bordered' | 'elevated';
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant = 'default', children, ...props }, ref) => {
-    const variants = {
-      default: 'bg-white',
-      bordered: 'bg-white border-2 border-gray-200',
-      elevated: 'bg-white shadow-lg',
-    };
+  ({ variant = 'default', sx, children, ...props }, ref) => {
+    const elevation = variant === 'elevated' ? 2 : variant === 'bordered' ? 0 : 1;
+    const borderStyle = variant === 'bordered' ? '2px solid' : 'none';
 
     return (
-      <div
+      <Paper
         ref={ref}
-        className={cn('rounded-xl p-4 sm:p-6 transition-all duration-200', variants[variant], className)}
+        elevation={elevation}
+        sx={{
+          p: { xs: 2, sm: 3 },
+          transition: 'all 0.2s',
+          border: borderStyle,
+          borderColor: 'grey.200',
+          ...sx
+        }}
         {...props}
       >
-        {children}
-      </div>
+        <Box>{children}</Box>
+      </Paper>
     );
   }
 );
