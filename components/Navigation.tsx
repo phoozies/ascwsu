@@ -14,8 +14,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
-import { Button } from '@/components/ui';
 
 const navigationItems = [
   { name: 'Home', href: '/' },
@@ -111,6 +111,7 @@ export default function Navigation() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform"
               target="_blank"
               rel="noopener noreferrer"
+              variant="contained"
               size="small"
             >
               Join Us
@@ -168,6 +169,7 @@ export default function Navigation() {
               href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform"
               target="_blank"
               rel="noopener noreferrer"
+              variant="contained"
               fullWidth
               size="large"
             >
