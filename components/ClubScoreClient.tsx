@@ -78,28 +78,18 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
               <Star className="w-6 h-6 sm:w-8 sm:h-8 text-[var(--old-gold)] ml-2 sm:ml-3" />
             </div>
             <div className="flex justify-center">
-              <div className="relative" style={{ width: '100%', maxWidth: '540px' }}>
-                {/* Loading overlay for Instagram */}
-                <div className="absolute inset-0 bg-gray-100 rounded-lg animate-pulse flex items-center justify-center" style={{ minHeight: '680px' }}>
-                  <Sparkles className="w-12 h-12 text-gray-400 animate-pulse" />
-                </div>
-                <iframe
-                  src="https://www.instagram.com/p/DQkLjdzCdoA/embed"
-                  className="w-full border-0 rounded-lg shadow-lg relative z-10"
-                  style={{
-                    width: '100%',
-                    minHeight: '680px',
-                    height: '680px',
-                    display: 'block'
-                  }}
-                  frameBorder="0"
-                  scrolling="no"
-                  onLoad={(e) => {
-                    const parent = e.currentTarget.previousElementSibling;
-                    if (parent) parent.remove();
-                  }}
-                />
-              </div>
+              <iframe
+                src="https://www.instagram.com/p/DQkLjdzCdoA/embed"
+                className="border-0 rounded-lg shadow-lg"
+                style={{
+                  width: '100%',
+                  maxWidth: '540px',
+                  minHeight: '780px',
+                  height: '780px',
+                }}
+                frameBorder="0"
+                scrolling="no"
+              />
             </div>
           </div>
         </Container>
