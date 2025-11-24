@@ -234,70 +234,87 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
 
             {/* Three Column Layout for Rest */}
             {rest.length > 0 && (
-              <Grid container spacing={3} sx={{ mb: 8 }}>
-                {(() => {
-                  // Calculate items per column: middle is longest, left/right equal
-                  const totalItems = rest.length;
-                  const baseItemsPerColumn = Math.floor(totalItems / 3);
-                  const remainder = totalItems % 3;
-                  
-                  // Left and right always equal, middle gets extras
-                  const sideCount = baseItemsPerColumn;
-                  const middleCount = baseItemsPerColumn + remainder;
-                  
-                  // Distribute: middle first, then left, then right
-                  const middleColumn = rest.slice(0, middleCount);
-                  const leftColumn = rest.slice(middleCount, middleCount + sideCount);
-                  const rightColumn = rest.slice(middleCount + sideCount);
+              <>
+                {/* Mobile View - Single Column Sequential */}
+                <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 8 }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                    {rest.map((member) => (
+                      <LeaderboardItem
+                        key={member.rank}
+                        rank={member.rank ?? 0}
+                        name={member.name}
+                        points={member.points}
+                      />
+                    ))}
+                  </Box>
+                </Box>
 
-                  return (
-                    <>
-                      {/* Left Column */}
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                          {leftColumn.map((member) => (
-                            <LeaderboardItem
-                              key={member.rank}
-                              rank={member.rank ?? 0}
-                              name={member.name}
-                              points={member.points}
-                            />
-                          ))}
-                        </Box>
-                      </Grid>
+                {/* Desktop View - Three Column Layout with Prominent Middle */}
+                <Grid container spacing={3} sx={{ display: { xs: 'none', md: 'flex' }, mb: 8 }}>
+                  {(() => {
+                    // Calculate items per column: middle is longest, left/right equal
+                    const totalItems = rest.length;
+                    const baseItemsPerColumn = Math.floor(totalItems / 3);
+                    const remainder = totalItems % 3;
+                    
+                    // Left and right always equal, middle gets extras
+                    const sideCount = baseItemsPerColumn;
+                    const middleCount = baseItemsPerColumn + remainder;
+                    
+                    // Distribute: middle first, then left, then right
+                    const middleColumn = rest.slice(0, middleCount);
+                    const leftColumn = rest.slice(middleCount, middleCount + sideCount);
+                    const rightColumn = rest.slice(middleCount + sideCount);
 
-                      {/* Middle Column - Most Prominent */}
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                          {middleColumn.map((member) => (
-                            <LeaderboardItem
-                              key={member.rank}
-                              rank={member.rank ?? 0}
-                              name={member.name}
-                              points={member.points}
-                              variant="prominent"
-                            />
-                          ))}
-                        </Box>
-                      </Grid>
+                    return (
+                      <>
+                        {/* Left Column */}
+                        <Grid size={{ md: 4 }}>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            {leftColumn.map((member) => (
+                              <LeaderboardItem
+                                key={member.rank}
+                                rank={member.rank ?? 0}
+                                name={member.name}
+                                points={member.points}
+                              />
+                            ))}
+                          </Box>
+                        </Grid>
 
-                      {/* Right Column */}
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                          {rightColumn.map((member) => (
-                            <LeaderboardItem
-                              key={member.rank}
-                              rank={member.rank ?? 0}
-                              name={member.name}
-                              points={member.points}
-                            />
-                          ))}
-                        </Box>
-                      </Grid>
-                    </>
-                  );
-                })()}
-              </Grid>
+                        {/* Middle Column - Most Prominent */}
+                        <Grid size={{ md: 4 }}>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            {middleColumn.map((member) => (
+                              <LeaderboardItem
+                                key={member.rank}
+                                rank={member.rank ?? 0}
+                                name={member.name}
+                                points={member.points}
+                                variant="prominent"
+                              />
+                            ))}
+                          </Box>
+                        </Grid>
+
+                        {/* Right Column */}
+                        <Grid size={{ md: 4 }}>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            {rightColumn.map((member) => (
+                              <LeaderboardItem
+                                key={member.rank}
+                                rank={member.rank ?? 0}
+                                name={member.name}
+                                points={member.points}
+                              />
+                            ))}
+                          </Box>
+                        </Grid>
+                      </>
+                    );
+                  })()}
+                </Grid>
+              </>
             )}
           </div>
         </Container>
