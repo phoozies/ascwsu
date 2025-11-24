@@ -8,9 +8,9 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <Box sx={{ minHeight: '100vh', pt: 10 }}>
+    <Box sx={{ minHeight: '100vh' }}>
       {/* Header Section */}
-      <Section variant="default" spacing="lg" className="pt-16">
+      <Section variant="default" spacing="lg">
         <Container>
           <Box sx={{ maxWidth: '80rem', mx: 'auto' }}>
             <Grid container spacing={4} alignItems="flex-start">
