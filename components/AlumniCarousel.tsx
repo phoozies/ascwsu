@@ -1,9 +1,11 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
+import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 interface AlumniProfile {
@@ -20,27 +22,48 @@ interface AlumniCarouselProps {
 
 export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
   return (
-    <div className="w-full max-w-full overflow-hidden">
-      <Swiper
-        modules={[Pagination]}
-        slidesPerView={3}
-        spaceBetween={30}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        }}
-      >
+    <div className="w-full max-w-full overflow-visible relative">
+      <div className="relative px-16">
+        {/* Custom Navigation Buttons */}
+        <button 
+          className="swiper-button-prev-alumni absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button 
+          className="swiper-button-next-alumni absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        <Swiper
+          modules={[Navigation, Pagination]}
+          slidesPerView={3}
+          spaceBetween={30}
+          loop={true}
+          navigation={{
+            prevEl: '.swiper-button-prev-alumni',
+            nextEl: '.swiper-button-next-alumni',
+          }}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
+          style={{ paddingBottom: '50px' }}
+        >
         {alumni.map((alumnus, index) => (
           <SwiperSlide key={index}>
             <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
@@ -77,6 +100,7 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </div>
   );
 }
