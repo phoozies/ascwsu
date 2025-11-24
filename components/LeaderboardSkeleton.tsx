@@ -1,23 +1,24 @@
-import { Card } from '@/components/ui';
-import Skeleton from '@/components/ui/Skeleton';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import Paper from '@mui/material/Paper';
 
 export default function LeaderboardSkeleton() {
   return (
-    <div className="space-y-6">
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       {[...Array(5)].map((_, i) => (
-        <Card key={i} variant="elevated" className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6 flex-1">
-              <Skeleton className="w-12 h-8" />
-              <Skeleton className="h-6 w-48" />
-            </div>
-            <div className="text-right">
-              <Skeleton className="h-8 w-16 ml-auto mb-2" />
-              <Skeleton className="h-4 w-12 ml-auto" />
-            </div>
-          </div>
-        </Card>
+        <Paper key={i} elevation={2} sx={{ p: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, flex: 1 }}>
+              <Skeleton width={48} height={32} />
+              <Skeleton width={192} height={24} />
+            </Box>
+            <Box sx={{ textAlign: 'right' }}>
+              <Skeleton width={64} height={32} sx={{ ml: 'auto', mb: 1 }} />
+              <Skeleton width={48} height={16} sx={{ ml: 'auto' }} />
+            </Box>
+          </Box>
+        </Paper>
       ))}
-    </div>
+    </Box>
   );
 }

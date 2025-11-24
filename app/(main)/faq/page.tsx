@@ -1,4 +1,7 @@
-import { Container, Section, Card } from '@/components/ui';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import { Container, Section } from '@/components/ui';
 
 export default function FAQPage() {
   const faqs = [
@@ -21,47 +24,99 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <Box sx={{ minHeight: '100vh', pt: 10 }}>
       <Section variant="accent" spacing="lg" className="pt-16">
         <Container>
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
-              FAQ <span className="text-[var(--old-gold)]">&amp; Help</span>
-            </h1>
-          </div>
+          <Box sx={{ maxWidth: '48rem', mx: 'auto', textAlign: 'center', mb: { xs: 4, sm: 6 } }}>
+            <Typography 
+              variant="h1" 
+              sx={{ 
+                fontSize: { xs: '1.875rem', sm: '2.5rem', md: '3rem', lg: '3.75rem' },
+                fontWeight: 700,
+                mb: { xs: 2, sm: 3 }
+              }}
+            >
+              FAQ <Box component="span" sx={{ color: 'primary.main' }}>&amp; Help</Box>
+            </Typography>
+          </Box>
 
           {/* FAQ Cards */}
-          <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mb-8 sm:mb-12">
+          <Box sx={{ maxWidth: '64rem', mx: 'auto', display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 }, mb: { xs: 4, sm: 6 } }}>
             {faqs.map((faq, index) => (
-              <Card key={index} variant="elevated" className="p-4 sm:p-6 md:p-8 hover:shadow-xl transition-shadow">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    {faq.question}
-                  </h3>
-                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              </Card>
+              <Paper 
+                key={index} 
+                elevation={2}
+                sx={{
+                  p: { xs: 2, sm: 3, md: 4 },
+                  transition: 'box-shadow 0.3s',
+                  '&:hover': {
+                    boxShadow: 8,
+                  },
+                }}
+              >
+                <Typography 
+                  variant="h5" 
+                  sx={{ 
+                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    fontWeight: 700,
+                    mb: { xs: 1.5, sm: 2 }
+                  }}
+                >
+                  {faq.question}
+                </Typography>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontSize: { xs: '1rem', sm: '1.125rem' },
+                    color: 'text.secondary',
+                    lineHeight: 1.6
+                  }}
+                >
+                  {faq.answer}
+                </Typography>
+              </Paper>
             ))}
-          </div>
+          </Box>
 
           {/* Still Have Questions Card */}
-          <div className="max-w-4xl mx-auto my-12 sm:my-16 md:my-24">
-            <Card variant="elevated" className="p-4 sm:p-6 md:p-8 hover:shadow-xl transition-shadow">
-              <div className="text-center">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+          <Box sx={{ maxWidth: '64rem', mx: 'auto', my: { xs: 6, sm: 8, md: 12 } }}>
+            <Paper 
+              elevation={2}
+              sx={{
+                p: { xs: 2, sm: 3, md: 4 },
+                transition: 'box-shadow 0.3s',
+                '&:hover': {
+                  boxShadow: 8,
+                },
+              }}
+            >
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography 
+                  variant="h5" 
+                  sx={{ 
+                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    fontWeight: 700,
+                    mb: { xs: 1.5, sm: 2 }
+                  }}
+                >
                   Still have questions?
-                </h3>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                </Typography>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontSize: { xs: '1rem', sm: '1.125rem' },
+                    color: 'text.secondary',
+                    lineHeight: 1.6
+                  }}
+                >
                   Feel free to reach out to our board members or contact us through our social media channels. We&apos;re here to help!
-                </p>
-              </div>
-            </Card>
-          </div>
+                </Typography>
+              </Box>
+            </Paper>
+          </Box>
         </Container>
       </Section>
-    </div>
+    </Box>
   );
 }

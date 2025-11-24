@@ -1,7 +1,11 @@
 'use client';
 
 import { Users, Sparkles } from 'lucide-react';
-import { Card } from '@/components/ui';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Link from 'next/link';
 
 interface EmptyStateProps {
   icon?: 'users' | 'sparkles';
@@ -22,22 +26,45 @@ export default function EmptyState({
   const Icon = icon === 'users' ? Users : Sparkles;
 
   return (
-    <Card variant="elevated" className="p-12 text-center">
-      <div className="max-w-md mx-auto">
-        <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Icon className="w-12 h-12 text-gray-400" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">{title}</h3>
-        <p className="text-gray-600 mb-6">{description}</p>
+    <Paper elevation={2} sx={{ p: 6, textAlign: 'center' }}>
+      <Box sx={{ maxWidth: '28rem', mx: 'auto' }}>
+        <Box
+          sx={{
+            width: 96,
+            height: 96,
+            backgroundColor: 'grey.100',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            mx: 'auto',
+            mb: 3,
+          }}
+        >
+          <Icon style={{ width: 48, height: 48, color: '#9CA3AF' }} />
+        </Box>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5 }}>
+          {title}
+        </Typography>
+        <Typography variant="body1" sx={{ color: 'text.secondary', mb: 3 }}>
+          {description}
+        </Typography>
         {action && (
-          <a
+          <Button
+            variant="contained"
             href={action.href}
-            className="inline-flex items-center justify-center px-6 py-3 bg-[var(--old-gold)] text-white font-semibold rounded-lg hover:bg-[var(--old-gold-dark)] transition-colors"
+            component={Link}
+            sx={{
+              backgroundColor: 'primary.main',
+              '&:hover': {
+                backgroundColor: 'var(--old-gold-dark)',
+              },
+            }}
           >
             {action.label}
-          </a>
+          </Button>
         )}
-      </div>
-    </Card>
+      </Box>
+    </Paper>
   );
 }

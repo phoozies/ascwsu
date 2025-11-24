@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { Container, Section } from '@/components/ui';
 import AlumniCarousel from '@/components/AlumniCarousel';
 
@@ -42,16 +44,24 @@ const featuredAlumni = [
 
 export default function AlumniPage() {
   return (
-    <div className="min-h-screen pt-20">
+    <Box sx={{ minHeight: '100vh', pt: 10 }}>
       {/* Featured Alumni */}
       <Section variant="default" spacing="lg" className="pt-16">
         <Container>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
-            Featured <span className="text-[var(--old-gold)]">Alumni</span>
-          </h2>
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              fontSize: { xs: '1.875rem', sm: '2.25rem' },
+              fontWeight: 700,
+              mb: { xs: 4, sm: 6 },
+              textAlign: 'center'
+            }}
+          >
+            Featured <Box component="span" sx={{ color: 'primary.main' }}>Alumni</Box>
+          </Typography>
           <AlumniCarousel alumni={featuredAlumni} />
         </Container>
       </Section>
-    </div>
+    </Box>
   );
 }

@@ -1,6 +1,8 @@
 'use client';
 
 import { Suspense } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { Container, Section } from '@/components/ui';
 import { Star } from 'lucide-react';
 import InstagramCarousel from '@/components/InstagramCarousel';
@@ -16,21 +18,29 @@ const instagramPosts = [
 
 export default function EventsPage() {
   return (
-    <div className="min-h-screen pt-20">
+    <Box sx={{ minHeight: '100vh', pt: 10 }}>
       {/* This Month's Events Carousel */}
       <Section variant="accent" spacing="lg">
         <Container>
-          <div className="flex items-center justify-center mb-6 sm:mb-8">
-            <Star className="w-6 h-6 sm:w-8 sm:h-8 text-[var(--old-gold)] mr-2 sm:mr-3" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Upcoming Events</h2>
-            <Star className="w-6 h-6 sm:w-8 sm:h-8 text-[var(--old-gold)] ml-2 sm:ml-3" />
-          </div>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: { xs: 3, sm: 4 } }}>
+            <Star style={{ width: 32, height: 32, color: 'var(--old-gold)', marginRight: 12 }} />
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontSize: { xs: '1.5rem', sm: '1.875rem', md: '2.25rem' },
+                fontWeight: 700
+              }}
+            >
+              Upcoming Events
+            </Typography>
+            <Star style={{ width: 32, height: 32, color: 'var(--old-gold)', marginLeft: 12 }} />
+          </Box>
 
           <Suspense fallback={<InstagramCarouselSkeleton />}>
             <InstagramCarousel posts={instagramPosts} />
           </Suspense>
         </Container>
       </Section>
-    </div>
+    </Box>
   );
 }

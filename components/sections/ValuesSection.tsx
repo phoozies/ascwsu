@@ -1,5 +1,9 @@
 import { Users, Calendar, Award, Heart } from 'lucide-react';
-import { Container, Section, Card } from '@/components/ui';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { Container, Section } from '@/components/ui';
 
 const values = [
   {
@@ -28,37 +32,84 @@ export default function ValuesSection() {
   return (
     <Section variant="accent" spacing="lg">
       <Container>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              fontSize: { xs: '2.5rem', md: '3rem' },
+              fontWeight: 700,
+              mb: 2
+            }}
+          >
             Our Core Values
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          </Typography>
+          <Typography 
+            variant="h6" 
+            sx={{ 
+              color: 'text.secondary',
+              maxWidth: '42rem',
+              mx: 'auto'
+            }}
+          >
             The principles that guide our mission and unite our community
-          </p>
-        </div>
+          </Typography>
+        </Box>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid container spacing={4}>
           {values.map((value) => {
             const Icon = value.icon;
             return (
-              <Card
-                key={value.title}
-                variant="elevated"
-                className="text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 bg-[var(--old-gold)] bg-opacity-10 rounded-full flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-[var(--old-gold)]" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600">
-                  {value.description}
-                </p>
-              </Card>
+              <Grid key={value.title} size={{ xs: 12, sm: 6, lg: 3 }}>
+                <Paper
+                  elevation={2}
+                  sx={{
+                    textAlign: 'center',
+                    p: 3,
+                    height: '100%',
+                    transition: 'all 0.3s',
+                    '&:hover': {
+                      boxShadow: 8,
+                      transform: 'translateY(-8px)',
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 64,
+                      height: 64,
+                      mx: 'auto',
+                      mb: 2,
+                      backgroundColor: 'primary.main',
+                      opacity: 0.1,
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative',
+                    }}
+                  >
+                    <Icon style={{ width: 32, height: 32, color: 'var(--old-gold)', position: 'absolute' }} />
+                  </Box>
+                  <Typography 
+                    variant="h6" 
+                    sx={{ 
+                      fontWeight: 700,
+                      mb: 1.5
+                    }}
+                  >
+                    {value.title}
+                  </Typography>
+                  <Typography 
+                    variant="body1" 
+                    sx={{ color: 'text.secondary' }}
+                  >
+                    {value.description}
+                  </Typography>
+                </Paper>
+              </Grid>
             );
           })}
-        </div>
+        </Grid>
       </Container>
     </Section>
   );

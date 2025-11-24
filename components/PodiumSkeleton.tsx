@@ -1,37 +1,65 @@
-import Skeleton from '@/components/ui/Skeleton';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 export default function PodiumSkeleton() {
   return (
-    <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+    <Grid container spacing={3} sx={{ maxWidth: '48rem', mx: 'auto' }}>
       {/* 2nd Place */}
-      <div className="order-2 md:order-1">
-        <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-8">
-          <Skeleton variant="circular" className="w-16 h-16 mx-auto mb-4" />
-          <Skeleton className="h-8 w-12 mx-auto mb-2" />
-          <Skeleton className="h-6 w-32 mx-auto mb-2" />
-          <Skeleton className="h-8 w-20 mx-auto" />
-        </div>
-      </div>
+      <Grid size={{ xs: 12, md: 4 }} sx={{ order: { xs: 2, md: 1 } }}>
+        <Paper 
+          elevation={8} 
+          sx={{ 
+            borderRadius: 4, 
+            p: 3, 
+            textAlign: 'center',
+            transform: { md: 'translateY(32px)' }
+          }}
+        >
+          <Skeleton variant="circular" width={64} height={64} sx={{ mx: 'auto', mb: 2 }} />
+          <Skeleton height={32} width={48} sx={{ mx: 'auto', mb: 1 }} />
+          <Skeleton height={24} width={128} sx={{ mx: 'auto', mb: 1 }} />
+          <Skeleton height={32} width={80} sx={{ mx: 'auto' }} />
+        </Paper>
+      </Grid>
 
       {/* 1st Place */}
-      <div className="order-1 md:order-2">
-        <div className="bg-gradient-to-br from-[var(--old-gold)] to-yellow-600 rounded-2xl shadow-2xl p-6 text-center transform scale-105">
-          <Skeleton variant="circular" className="w-20 h-20 mx-auto mb-4 bg-white/30" />
-          <Skeleton className="h-10 w-12 mx-auto mb-2 bg-white/30" />
-          <Skeleton className="h-7 w-36 mx-auto mb-2 bg-white/30" />
-          <Skeleton className="h-9 w-24 mx-auto bg-white/30" />
-        </div>
-      </div>
+      <Grid size={{ xs: 12, md: 4 }} sx={{ order: { xs: 1, md: 2 } }}>
+        <Paper 
+          elevation={12}
+          sx={{ 
+            background: 'linear-gradient(135deg, var(--old-gold) 0%, #ca8a04 100%)',
+            borderRadius: 4, 
+            p: 3, 
+            textAlign: 'center',
+            transform: 'scale(1.05)'
+          }}
+        >
+          <Skeleton variant="circular" width={80} height={80} sx={{ mx: 'auto', mb: 2, bgcolor: 'rgba(255,255,255,0.3)' }} />
+          <Skeleton height={40} width={48} sx={{ mx: 'auto', mb: 1, bgcolor: 'rgba(255,255,255,0.3)' }} />
+          <Skeleton height={28} width={144} sx={{ mx: 'auto', mb: 1, bgcolor: 'rgba(255,255,255,0.3)' }} />
+          <Skeleton height={36} width={96} sx={{ mx: 'auto', bgcolor: 'rgba(255,255,255,0.3)' }} />
+        </Paper>
+      </Grid>
 
       {/* 3rd Place */}
-      <div className="order-3">
-        <div className="bg-white rounded-2xl shadow-xl p-6 text-center transform md:translate-y-12">
-          <Skeleton variant="circular" className="w-16 h-16 mx-auto mb-4" />
-          <Skeleton className="h-8 w-12 mx-auto mb-2" />
-          <Skeleton className="h-6 w-32 mx-auto mb-2" />
-          <Skeleton className="h-8 w-20 mx-auto" />
-        </div>
-      </div>
-    </div>
+      <Grid size={{ xs: 12, md: 4 }} sx={{ order: 3 }}>
+        <Paper 
+          elevation={8}
+          sx={{ 
+            borderRadius: 4, 
+            p: 3, 
+            textAlign: 'center',
+            transform: { md: 'translateY(48px)' }
+          }}
+        >
+          <Skeleton variant="circular" width={64} height={64} sx={{ mx: 'auto', mb: 2 }} />
+          <Skeleton height={32} width={48} sx={{ mx: 'auto', mb: 1 }} />
+          <Skeleton height={24} width={128} sx={{ mx: 'auto', mb: 1 }} />
+          <Skeleton height={32} width={80} sx={{ mx: 'auto' }} />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }

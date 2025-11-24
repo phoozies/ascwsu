@@ -1,16 +1,20 @@
-import { Card } from '@/components/ui';
-import Skeleton from '@/components/ui/Skeleton';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 export default function InstagramCarouselSkeleton() {
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Box sx={{ maxWidth: '72rem', mx: 'auto' }}>
+      <Grid container spacing={3}>
         {[1, 2, 3].map((i) => (
-          <Card key={i} variant="elevated" className="overflow-hidden">
-            <Skeleton className="w-full h-[500px]" />
-          </Card>
+          <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
+            <Paper elevation={2} sx={{ overflow: 'hidden' }}>
+              <Skeleton variant="rectangular" width="100%" height={500} />
+            </Paper>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 }
