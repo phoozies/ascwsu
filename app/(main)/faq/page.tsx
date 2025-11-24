@@ -25,21 +25,21 @@ export default function FAQPage() {
       <Section variant="accent" spacing="lg" className="pt-16">
         <Container>
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              FAQ <span className="text-[var(--old-gold)]">& Help</span>
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
+              FAQ <span className="text-[var(--old-gold)]">&amp; Help</span>
             </h1>
           </div>
 
           {/* FAQ Cards */}
-          <div className="max-w-4xl mx-auto space-y-6 mb-12">
+          <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mb-8 sm:mb-12">
             {faqs.map((faq, index) => (
-              <Card key={index} variant="elevated" className="p-8 hover:shadow-xl transition-shadow">
+              <Card key={index} variant="elevated" className="p-4 sm:p-6 md:p-8 hover:shadow-xl transition-shadow">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                     {faq.question}
                   </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
@@ -48,13 +48,13 @@ export default function FAQPage() {
           </div>
 
           {/* Still Have Questions Card */}
-          <div className="max-w-4xl mx-auto my-24">
-            <Card variant="elevated" className="p-8 hover:shadow-xl transition-shadow">
+          <div className="max-w-4xl mx-auto my-12 sm:my-16 md:my-24">
+            <Card variant="elevated" className="p-4 sm:p-6 md:p-8 hover:shadow-xl transition-shadow">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                   Still have questions?
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                   Feel free to reach out to our board members or contact us through our social media channels. We&apos;re here to help!
                 </p>
               </div>

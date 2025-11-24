@@ -46,7 +46,7 @@ export default function AlumniPage() {
       {/* Featured Alumni */}
       <Section variant="default" spacing="lg" className="pt-16">
         <Container>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
             Featured <span className="text-[var(--old-gold)]">Alumni</span>
           </h2>
           <AlumniCarousel alumni={featuredAlumni} />

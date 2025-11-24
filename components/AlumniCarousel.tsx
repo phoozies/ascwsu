@@ -24,16 +24,16 @@ interface AlumniCarouselProps {
 export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
   return (
     <div className="w-full relative">
-      <div className="relative px-16">
-        {/* Custom Navigation Buttons */}
+      <div className="relative px-0 md:px-16">
+        {/* Custom Navigation Buttons - Hidden on Mobile */}
         <button 
-          className="swiper-button-prev-custom-alumni absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="hidden md:flex swiper-button-prev-custom-alumni absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button 
-          className="swiper-button-next-custom-alumni absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="hidden md:flex swiper-button-next-custom-alumni absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -41,7 +41,7 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
       
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-        spaceBetween={30}
+        spaceBetween={10}
         slidesPerView={1}
         navigation={{
           prevEl: '.swiper-button-prev-custom-alumni',
@@ -53,16 +53,8 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
           dynamicMainBullets: 3,
           el: '.swiper-pagination-custom-alumni',
         }}
-        loop={true}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        effect="coverflow"
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
+        watchOverflow={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -71,17 +63,37 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
           768: {
             slidesPerView: 2,
             spaceBetween: 30,
+            loop: true,
+            centeredSlides: true,
+            effect: 'coverflow',
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            },
           },
           1024: {
             slidesPerView: 3,
             spaceBetween: 40,
+            loop: true,
+            centeredSlides: true,
+            effect: 'coverflow',
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            },
           },
         }}
         className="alumni-carousel pb-0"
       >
         {alumni.map((alumnus, index) => (
           <SwiperSlide key={index}>
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
+            <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl mx-2 sm:mx-0">
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[var(--old-gold)] to-[var(--old-gold-dark)]">
                 <Image
@@ -118,7 +130,7 @@ export default function AlumniCarousel({ alumni }: AlumniCarouselProps) {
       </div>
       
       {/* Custom Pagination */}
-      <div className="swiper-pagination-custom-alumni"></div>
+      <div className="swiper-pagination-custom-alumni mt-8"></div>
     </div>
   );
 }

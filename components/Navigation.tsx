@@ -3,20 +3,25 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui';
 
 const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'FAQ', href: '/faq' },
-  { name: 'Alumni', href: '/alumni' },
   { name: 'Events', href: '/events' },
   { name: 'Club Score', href: '/club-score' },
+  { name: 'MAASU', href: '/maasu' },
+  { name: 'Agency', href: '/agency' },
+  { name: 'Alumni', href: '/alumni' },
+  { name: 'FAQ', href: '/faq' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
@@ -39,15 +44,22 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-[var(--old-gold)] font-medium transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`font-medium transition-colors relative pb-1 ${
+                    isActive 
+                      ? 'text-[var(--old-gold)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--old-gold)]' 
+                      : 'text-gray-700 hover:text-[var(--old-gold)]'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
             <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="shadow-2xl">Join Us</Button>
             </Link>
@@ -71,16 +83,23 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-4">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-[var(--old-gold)] font-medium transition-colors px-2 py-2"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigationItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`font-medium transition-colors px-2 py-2 relative ${
+                      isActive 
+                        ? 'text-[var(--old-gold)] border-l-4 border-[var(--old-gold)] pl-4' 
+                        : 'text-gray-700 hover:text-[var(--old-gold)]'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
               <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="shadow-2xl">Join Us</Button>
               </Link>

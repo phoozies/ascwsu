@@ -42,16 +42,16 @@ export default async function LandingSection() {
       {/* Content Overlay */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
         <Container>
-          <div className="max-w-3xl text-center">
+          <div className="max-w-3xl text-center px-4">
             
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 sm:mb-8 drop-shadow-2xl">
               Asian Student{' '}
               <span className="text-[var(--old-gold-light)] whitespace-nowrap">Conference</span>
             </h1>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="shadow-2xl">Join Us</Button>
               </Link>

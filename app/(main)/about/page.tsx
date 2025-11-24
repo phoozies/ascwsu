@@ -18,16 +18,16 @@ export default function AboutPage() {
                   alt="ASC Logo" 
                   width={300}
                   height={300}
-                  className="object-contain w-full h-auto"
+                  className="object-contain w-48 sm:w-64 md:w-full h-auto"
                 />
               </div>
               
               {/* Content */}
               <div className="text-center md:text-left">
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
                   About <span className="text-[var(--old-gold)]">Asian Student Conference</span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                   ASC is a WSU Multi-Cultural Agency that aims to unite Asian Americans or students with Asian interest within campus by providing college students with network, socials, leadership events encouraging/educating about Asian culture and heritage throughout campus!
                 </p>
               </div>
@@ -39,11 +39,11 @@ export default function AboutPage() {
       {/* Annual Events Section */}
       <Section variant="accent" spacing="lg" fullHeight>
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
               Our Annual <span className="text-[var(--old-gold)]">Events</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Throughout the year, ASC hosts exciting events that celebrate Asian culture, 
               build community, and create lasting memories for all our members.
             </p>

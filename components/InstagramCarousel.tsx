@@ -20,16 +20,16 @@ interface InstagramCarouselProps {
 export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
   return (
     <div className="w-full relative">
-      <div className="relative px-16">
-        {/* Custom Navigation Buttons */}
+      <div className="relative px-0 md:px-16">
+        {/* Custom Navigation Buttons - Hidden on Mobile */}
         <button 
-          className="swiper-button-prev-custom-instagram absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="hidden md:flex swiper-button-prev-custom-instagram absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button 
-          className="swiper-button-next-custom-instagram absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
+          className="hidden md:flex swiper-button-next-custom-instagram absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-[var(--old-gold)] hover:bg-[var(--old-gold)] hover:text-white transition-all duration-300" 
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -37,7 +37,7 @@ export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
       
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-          spaceBetween={30}
+          spaceBetween={10}
           slidesPerView={1}
           navigation={{
             prevEl: '.swiper-button-prev-custom-instagram',
@@ -49,16 +49,8 @@ export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
             dynamicMainBullets: 3,
             el: '.swiper-pagination-custom-instagram',
           }}
-          loop={true}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
-          effect="coverflow"
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
+          watchOverflow={true}
           breakpoints={{
             640: {
               slidesPerView: 1,
@@ -67,23 +59,42 @@ export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
             768: {
               slidesPerView: 2,
               spaceBetween: 30,
+              loop: true,
+              centeredSlides: true,
+              effect: 'coverflow',
+              coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              },
             },
             1024: {
               slidesPerView: 3,
               spaceBetween: 40,
+              loop: true,
+              centeredSlides: true,
+              effect: 'coverflow',
+              coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              },
             },
           }}
           className="instagram-carousel pb-0"
         >
           {posts.map((post) => (
             <SwiperSlide key={post.id}>
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center max-w-full">
                 <iframe
                   src={`${post.url}embed`}
-                  className="w-full border-0 overflow-hidden rounded-lg shadow-lg"
+                  className="w-full max-w-[85vw] sm:max-w-lg border-0 overflow-hidden rounded-lg shadow-lg"
                   style={{
-                    maxWidth: '540px',
-                    minHeight: '680px',
+                    minHeight: '600px',
                     margin: '0 auto',
                     display: 'block'
                   }}
@@ -98,7 +109,7 @@ export default function InstagramCarousel({ posts }: InstagramCarouselProps) {
       </div>
       
       {/* Custom Pagination */}
-      <div className="swiper-pagination-custom-instagram"></div>
+      <div className="swiper-pagination-custom-instagram mt-8"></div>
     </div>
   );
 }
