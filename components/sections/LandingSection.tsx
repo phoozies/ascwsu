@@ -40,26 +40,26 @@ export default async function LandingSection() {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center">
+      <div className="relative z-10 min-h-screen flex items-center justify-center" style={{ paddingTop: '64px' }}>
         <Container>
-          <div className="max-w-3xl text-center">
+          <div className="max-w-3xl mx-auto text-center px-4">
             
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 sm:mb-8 drop-shadow-2xl">
               Asian Student{' '}
               <span className="text-[var(--old-gold-light)] whitespace-nowrap">Conference</span>
             </h1>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="shadow-2xl">Join Us</Button>
+                <Button size="large" className="shadow-2xl w-full sm:w-auto">Join Us</Button>
               </Link>
               <Link href="/about">
                 <Button 
                   variant="outline" 
-                  size="lg" 
-                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900"
+                  size="large" 
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900 w-full sm:w-auto"
                 >
                   Learn More
                 </Button>

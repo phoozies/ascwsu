@@ -1,5 +1,10 @@
 import Image from 'next/image';
-import { Instagram, Mail, MapPin } from 'lucide-react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import { Instagram, Mail as MailIcon, LocationOn as MapPinIcon } from '@mui/icons-material';
 
 // Custom icons
 const TikTokIcon = () => (
@@ -43,70 +48,163 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-full px-8">
-        <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <Box 
+      component="footer" 
+      sx={{ 
+        bgcolor: 'grey.900', 
+        color: 'grey.300' 
+      }}
+    >
+      <Box sx={{ maxWidth: '100%', px: { xs: 4, sm: 6, md: 8 } }}>
+        <Box sx={{ py: 6 }}>
+          <Grid container spacing={{ xs: 4, md: 8 }}>
             {/* Left Column: Logo */}
-            <div className="flex flex-col items-center text-center">
-              <Image 
-                src="/asc_logo_white_border.png" 
-                alt="ASC Logo" 
-                width={128}
-                height={128}
-                className="mb-4"
-              />
-            </div>
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}
+              >
+                <Image 
+                  src="/asc_logo_white_border.png" 
+                  alt="ASC Logo" 
+                  width={128}
+                  height={128}
+                  style={{ marginBottom: '1rem' }}
+                />
+              </Box>
+            </Grid>
 
             {/* Middle Column: Social Links */}
-            <div className="flex flex-col items-center justify-center text-center">
-              <h4 className="text-lg font-semibold text-white mb-4">Connect With Us</h4>
-              <div className="flex flex-wrap justify-center gap-3">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[var(--old-gold)] transition-colors"
-                      aria-label={social.name}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center'
+                }}
+              >
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    fontWeight: 600, 
+                    color: 'white',
+                    mb: 2
+                  }}
+                >
+                  Connect With Us
+                </Typography>
+                <Box 
+                  sx={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    justifyContent: 'center', 
+                    gap: 1.5 
+                  }}
+                >
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+                    return (
+                      <IconButton
+                        key={social.name}
+                        component="a"
+                        href={social.href}
+                        aria-label={social.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: '50%',
+                          bgcolor: 'grey.800',
+                          '&:hover': {
+                            bgcolor: 'primary.main',
+                          },
+                        }}
+                      >
+                        <Icon />
+                      </IconButton>
+                    );
+                  })}
+                </Box>
+              </Box>
+            </Grid>
 
             {/* Right Column: Contact */}
-            <div className="flex flex-col items-center md:items-center text-center">
-              <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
-              <div className="space-y-3 text-sm">
-                <a 
-                  href="mailto:asc.shockers@gmail.com"
-                  className="flex items-center gap-2 hover:text-[var(--old-gold)] transition-colors"
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}
+              >
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    fontWeight: 600, 
+                    color: 'white',
+                    mb: 2
+                  }}
                 >
-                  <Mail className="w-5 h-5" />
-                  <span>asc.shockers@gmail.com</span>
-                </a>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>Wichita, Kansas</span>
-                </div>
-              </div>
-            </div>
-          </div>
+                  Contact Us
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                  <Link
+                    href="mailto:asc.shockers@gmail.com"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      color: 'inherit',
+                      textDecoration: 'none',
+                      fontSize: '0.875rem',
+                      '&:hover': {
+                        color: 'primary.main',
+                      },
+                    }}
+                  >
+                    <MailIcon sx={{ width: 20, height: 20 }} />
+                    <span>asc.shockers@gmail.com</span>
+                  </Link>
+                  <Box 
+                    sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 1,
+                      fontSize: '0.875rem'
+                    }}
+                  >
+                    <MapPinIcon sx={{ width: 20, height: 20 }} />
+                    <span>Wichita, Kansas</span>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-            <p>
+          <Box 
+            sx={{ 
+              borderTop: 1, 
+              borderColor: 'grey.800', 
+              mt: 4, 
+              pt: 4, 
+              textAlign: 'center' 
+            }}
+          >
+            <Typography variant="body2">
               &copy; {new Date().getFullYear()} Asian Student Conference - 
               Wichita State University. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

@@ -384,3 +384,25 @@ body {
 .image-slideshow .swiper-slide-active {
   opacity: 1;
 }
+
+/* Global Swiper Pagination Styling with Old Gold */
+.swiper-pagination-bullet {
+  background: var(--old-gold) !important;
+  opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: var(--old-gold) !important;
+}
+
+/* Swiper Navigation Buttons Default Styling */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--old-gold) !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 24px !important;
+}

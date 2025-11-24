@@ -1,39 +1,113 @@
-import { Container, Section, Button } from '@/components/ui';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { Container, Section } from '@/components/ui';
 
 export default function CTASection() {
   return (
     <Section variant="default" spacing="lg">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[var(--old-gold)] to-[var(--old-gold-dark)] p-12 md:p-16 text-center text-white">
+        <Box
+          sx={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: 6,
+            background: 'linear-gradient(to right, var(--old-gold), var(--old-gold-dark))',
+            p: { xs: 6, md: 8 },
+            textAlign: 'center',
+            color: 'white',
+          }}
+        >
           {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full translate-y-1/2 -translate-x-1/2" />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: 256,
+              height: 256,
+              backgroundColor: 'white',
+              opacity: 0.05,
+              borderRadius: '50%',
+              transform: 'translate(50%, -50%)',
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: 256,
+              height: 256,
+              backgroundColor: 'white',
+              opacity: 0.05,
+              borderRadius: '50%',
+              transform: 'translate(-50%, 50%)',
+            }}
+          />
           
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <Box sx={{ position: 'relative', zIndex: 10 }}>
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontSize: { xs: '2.5rem', md: '3rem' },
+                fontWeight: 700,
+                mb: 2
+              }}
+            >
               Ready to Join ASC?
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                mb: 4,
+                maxWidth: '42rem',
+                mx: 'auto',
+                opacity: 0.9
+              }}
+            >
               Become part of a vibrant community dedicated to celebrating Asian culture 
               and building lasting friendships at Wichita State University.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            </Typography>
+            <Box 
+              sx={{ 
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: 2,
+                justifyContent: 'center'
+              }}
+            >
               <Button 
-                size="lg" 
-                className="bg-white text-[var(--old-gold)] hover:bg-gray-100"
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: 'white',
+                  color: 'var(--old-gold)',
+                  '&:hover': {
+                    backgroundColor: 'grey.100',
+                  },
+                }}
               >
                 Apply for Membership
               </Button>
               <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-[var(--old-gold)]"
+                variant="outlined"
+                size="large"
+                sx={{
+                  borderColor: 'white',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: 'white',
+                    color: 'var(--old-gold)',
+                    borderColor: 'white',
+                  },
+                }}
               >
                 Contact Us
               </Button>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </Container>
     </Section>
   );

@@ -6,10 +6,10 @@ export interface MemberScore {
 
 export async function getLeaderboardData(): Promise<MemberScore[]> {
   try {
-    const spreadsheetId = '1FuTo8QkKmmxioHcjgiFkyMDCEZzHUGl7-gbRt7NOSP0';
+    const spreadsheetId = '1fSUaayqAdqRb9Ja1uvxBRBOE3HxDHVwPYw1f0qyVdWU';
     
-    // Using Google Sheets public API to fetch data from the second sheet
-    const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=333172312`;
+    // Using Google Sheets public API to fetch data from the first sheet
+    const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&gid=0`;
     
     const response = await fetch(url, {
       next: { revalidate: 300 } // Cache for 5 minutes
