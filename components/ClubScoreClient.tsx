@@ -93,7 +93,6 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
                 }}
                 frameBorder="0"
                 scrolling="no"
-                allowTransparency
                 onLoad={(e) => {
                   const parent = e.currentTarget.previousElementSibling;
                   if (parent) parent.remove();
