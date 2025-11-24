@@ -53,12 +53,12 @@ export default async function LandingSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <Link href="https://docs.google.com/forms/d/e/1FAIpQLScsNFOcpU40vrp1cH3H8XyWGZBaWAafjIuLT_GDGdSM-FI6Zg/viewform" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="shadow-2xl w-full sm:w-auto">Join Us</Button>
+                <Button size="large" className="shadow-2xl w-full sm:w-auto">Join Us</Button>
               </Link>
               <Link href="/about">
                 <Button 
                   variant="outline" 
-                  size="lg" 
+                  size="large" 
                   className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-gray-900 w-full sm:w-auto"
                 >
                   Learn More

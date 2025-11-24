@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import MuiSkeleton, { SkeletonProps as MuiSkeletonProps } from '@mui/material/Skeleton';
 
-export interface SkeletonProps extends MuiSkeletonProps {
+export interface SkeletonProps extends Omit<MuiSkeletonProps, 'variant'> {
   variant?: 'default' | 'circular' | 'text' | 'rectangular';
 }
 
