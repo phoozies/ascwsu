@@ -44,9 +44,9 @@ const featuredAlumni = [
 
 export default function AlumniPage() {
   return (
-    <Box sx={{ minHeight: '100vh', pt: 10 }}>
+    <Box sx={{ minHeight: '100vh' }}>
       {/* Featured Alumni */}
-      <Section variant="default" spacing="lg" className="pt-16">
+      <Section variant="default" spacing="lg">
         <Container>
           <Typography 
             variant="h2" 

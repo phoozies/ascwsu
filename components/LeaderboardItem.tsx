@@ -52,11 +52,11 @@ export default function LeaderboardItem({ rank, name, points, variant = 'default
     >
       <Card 
         variant="elevated" 
-        className={`p-6 ${isProminent ? 'ring-2 ring-[var(--old-gold)] shadow-2xl scale-105' : ''}`}
+        className={`p-6 ${isProminent ? 'ring-2 ring-[var(--old-gold)] shadow-2xl scale-105 border-l-4 border-l-[var(--old-gold)]' : ''}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <div className={`${isProminent ? 'text-3xl' : 'text-2xl'} font-bold text-gray-400 w-12`}>
+            <div className={`${isProminent ? 'text-3xl' : 'text-2xl'} font-bold ${isProminent ? 'text-[var(--old-gold)]' : 'text-gray-400'} w-12`}>
               #{rank}
             </div>
             <h3 className={`${isProminent ? 'text-2xl' : 'text-xl'} font-bold text-gray-900`}>{name}</h3>

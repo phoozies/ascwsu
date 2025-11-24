@@ -108,7 +108,7 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
       {/* Full Leaderboard */}
       <Section variant="default" spacing="lg">
         <Container>
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center pt-2">
             Full Rankings
           </h2>
           <div className="max-w-7xl mx-auto">
@@ -246,30 +246,19 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
             {rest.length > 0 && (
               <Grid container spacing={3} sx={{ mb: 8 }}>
                 {(() => {
-                  // Calculate items per column ensuring middle is longest
+                  // Calculate items per column: middle is longest, left/right equal
                   const totalItems = rest.length;
                   const baseItemsPerColumn = Math.floor(totalItems / 3);
                   const remainder = totalItems % 3;
                   
-                  // Distribute items: middle gets extra first, then balance left/right
-                  let leftCount, middleCount, rightCount;
+                  // Left and right always equal, middle gets extras
+                  const sideCount = baseItemsPerColumn;
+                  const middleCount = baseItemsPerColumn + remainder;
                   
-                  if (remainder === 0) {
-                    // Even distribution (e.g., 9: 3-3-3)
-                    leftCount = middleCount = rightCount = baseItemsPerColumn;
-                  } else if (remainder === 1) {
-                    // Middle gets the extra item (e.g., 10: 3-4-3)
-                    leftCount = rightCount = baseItemsPerColumn;
-                    middleCount = baseItemsPerColumn + 1;
-                  } else {
-                    // remainder === 2: Balance left/right equally (e.g., 11: 3-5-3 or 8: 2-4-2)
-                    leftCount = rightCount = baseItemsPerColumn;
-                    middleCount = baseItemsPerColumn + 2;
-                  }
-                  
-                  const leftColumn = rest.slice(0, leftCount);
-                  const middleColumn = rest.slice(leftCount, leftCount + middleCount);
-                  const rightColumn = rest.slice(leftCount + middleCount);
+                  // Distribute: middle first, then left, then right
+                  const middleColumn = rest.slice(0, middleCount);
+                  const leftColumn = rest.slice(middleCount, middleCount + sideCount);
+                  const rightColumn = rest.slice(middleCount + sideCount);
 
                   return (
                     <>
@@ -348,7 +337,7 @@ export default function ClubScoreClientWrapper({ leaderboard }: { leaderboard: M
           </Section>
           <Section variant="default" spacing="lg">
             <Container>
-              <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center pt-2">
                 Loading Rankings...
               </h2>
               <div className="max-w-7xl mx-auto">
