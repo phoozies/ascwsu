@@ -24,7 +24,6 @@ const navigationItems = [
   { name: 'ASCore', href: '/ascore' },
   { name: 'MAASU', href: '/maasu' },
   { name: 'Agency', href: '/agency' },
-  { name: 'Alumni', href: '/alumni' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Contact', href: '/contact' },
 ];
