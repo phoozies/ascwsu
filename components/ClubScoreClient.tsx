@@ -58,11 +58,11 @@ function LeaderboardContent({ leaderboard }: LeaderboardContentProps) {
       {/* Header Section */}
       <Section variant="accent" spacing="lg">
         <Container>
-          {/* Club Score Header - Full Width Row */}
+          {/* ASCore Header - Full Width Row */}
           <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
             <div className="flex items-center justify-center mb-4 sm:mb-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-                Club <span className="text-[var(--old-gold)]">Score</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+                <span className="text-[var(--old-gold)]">ASC</span><span className="text-gray-900">ore</span>
               </h1>
             </div>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">

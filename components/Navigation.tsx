@@ -21,7 +21,7 @@ const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Events', href: '/events' },
-  { name: 'Club Score', href: '/club-score' },
+  { name: 'ASCore', href: '/ascore' },
   { name: 'MAASU', href: '/maasu' },
   { name: 'Agency', href: '/agency' },
   { name: 'Alumni', href: '/alumni' },
