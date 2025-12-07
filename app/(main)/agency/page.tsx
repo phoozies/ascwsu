@@ -109,14 +109,17 @@ export default function AgencyPage() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         mb: 2,
-                        position: 'relative'
+                        position: 'relative',
+                        bgcolor: 'grey.50',
+                        borderRadius: 2
                       }}
                     >
                       <Image 
                         src={org.logo}
                         alt={`${org.abbr} Logo`}
                         fill
-                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'contain', padding: '16px' }}
                       />
                     </Box>
                     <Typography 
@@ -182,6 +185,8 @@ export default function AgencyPage() {
                         justifyContent: 'center',
                         mb: 2,
                         position: 'relative',
+                        bgcolor: 'grey.50',
+                        borderRadius: 2,
                         filter: 'grayscale(100%)'
                       }}
                     >
@@ -189,7 +194,8 @@ export default function AgencyPage() {
                         src={org.logo}
                         alt={`${org.abbr} Logo`}
                         fill
-                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'contain', padding: '16px' }}
                       />
                     </Box>
                     <Typography 
