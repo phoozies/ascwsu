@@ -2,9 +2,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Chip from '@mui/material/Chip';
 import { Container, Section, Card } from '@/components/ui';
-import { Users, CheckCircle, XCircle } from 'lucide-react';
+import { Users } from 'lucide-react';
 import Image from 'next/image';
 
 export default function AgencyPage() {
